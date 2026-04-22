@@ -14,13 +14,7 @@ page {
         10.insertData = 1
     }
 
-    headerData.20 = TEXT
-    headerData.20.value (
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    )
-    
+
     headerData.30 = TEXT
     headerData.30.value (
         <link rel="apple-touch-icon" sizes="57x57" href="/fileadmin/Favicon/apple-icon-57x57.png">
@@ -42,14 +36,7 @@ page {
     headerData.5678689 = TEXT
     headerData.5678689.value (
         <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-32ZR5E42TP"></script>
-        <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
 
-        gtag('config', 'G-32ZR5E42TP');
-        </script>
 
     )
 
@@ -170,7 +157,7 @@ page {
     }
 
     includeCSS {
-        site_package_layout = EXT:site_package/Resources/Public/Css/app.css
+        site_package_layout = EXT:site_package/Resources/Public/Assets/Dist/Css/app.css
     }
 
     includeJSLibs {
@@ -186,10 +173,7 @@ page {
     }
 
     includeJSFooter {
-        #flowbite = EXT:site_package/Resources/Public/JavaScript/libs/flowbite.min.js
-        #swiper = EXT:site_package/Resources/Public/JavaScript/libs/swiper-bundle.min.js
-        site_package_scripts = EXT:site_package/Resources/Public/JavaScript/app.js
-        site_package_scripts.defer = 1
+        site_package_scripts = EXT:site_package/Resources/Public/Assets/Dist/JavaScript/app.js
     }
 }
 
