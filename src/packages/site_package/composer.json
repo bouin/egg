@@ -5,8 +5,11 @@
     "homepage": "https://www.studiothompfister.com",
     "license": ["GPL-2.0-or-later"],
     "keywords": ["TYPO3 CMS"],
-    "version": "dev-main",
-    "authors": "Daniel Hackiewicz",
+    "authors": [
+        {
+            "name": "Daniel Hackiewicz"
+        }
+    ],
     "require": {
         "typo3/cms-core": "^13.4",
         "typo3/cms-rte-ckeditor": "^13.4",
