@@ -1,0 +1,256 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --header-height: 53px; /* Adjust this value to match your header height */
+}
+
+/* First declare the fonts */
+@font-face {
+    font-family: 'Helvetica Neue Light';
+    src: url('../Fonts/HelveticaNeueLTPro-It.woff') format('woff');
+}
+
+/* Custom styles */
+@layer base {
+    #mc_embed_shell, #mc_embed_shell * {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+        font-weight: 300!important;
+    }
+    #mc_embed_signup .button {
+        height: 50px !important;
+    }
+    #mc_embed_signup div#mce-responses {
+        margin: 0px !important;
+        padding: 0px !important;
+    }
+    #mce-success-response {
+        color: black !important;
+    }
+    #mc_embed_shell {
+        input.button {
+            background: #E2FF83;
+            border-radius: 30px;
+            color: black;
+            &:hover {
+                color: #E2FF83;
+            }
+            .button {
+                height: 50px !important;
+            }
+        }
+        .refferal_badge {
+            display: none !important;
+        }
+        * {
+            font-size: 24px !important;
+            letter-spacing: 0.4px;
+        }
+        .mce_inline_error, .indicates-required, .indicates-required span {
+            font-size: 13px !important;
+        }
+    }
+    html, * {
+      letter-spacing: 0.04px;
+      letter-spacing: normal;
+      font-size: 20px;
+      line-height: 1.2em;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: auto;
+        -moz-osx-font-smoothing: auto;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-weight: 300; /* Light */
+    }
+    p {
+        padding-bottom: .8rem;
+    }
+    body {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-font-smoothing: auto;
+      -moz-osx-font-smoothing: auto;
+      font-optical-sizing: auto;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-weight: 300; /* Light */
+    }
+  }
+
+@layer components {
+    * {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    .mainnav-for-a a span, .mainnav-for-a a{
+        font-size: 75px;
+        font-size: 6.8vw;
+    }
+    @media (max-width: 640px) {
+        .mainnav-for-a a span, .mainnav-for-a a{
+            font-size: 14vw;
+        }
+    }
+    @media (max-width: 600px) {
+        .mainnav-for-a a span, .mainnav-for-a a{
+            font-size: 52px;
+        }
+    }
+    .static-italic {
+        position: relative;
+    }
+
+    .static-italic::after {
+        content: attr(data-text);
+        font-style: italic;
+        opacity: 0;
+        pointer-events: none;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+    figcaption, figcaption * {
+        font-weight: 400 !important;
+        line-height: 1.2 !important;
+        font-size: 14px !important;
+    }
+    .filter li, .filter li a {
+        font-weight: 400 !important;
+        line-height: 1.2 !important;
+        font-size: 18px !important;
+    }
+    .font-normal {
+        font-weight: 400 !important;
+        line-height: 1.2 !important;
+    }
+    .mainnav-for-a-detail, .mainnav-for-a-detail * {
+        font-weight: 350 !important;
+        line-height: 1.2 !important;
+    }
+    #scrollNav a,
+    #scrollNav * {
+        font-weight: 350 !important;
+        line-height: 1.2 !important;
+    }
+    #heroNav a,
+    #heroNav * {
+        font-weight: 300 !important;
+        font-synthesis: none !important;
+    }
+    img {
+        transform: translateZ(0);
+        image-rendering: -webkit-optimize-contrast;
+    }
+    #heroNav.dteail p, #heroNav.dteail a {
+        font-weight: 350 !important;
+        font-synthesis: none !important;
+        line-height: 1.2 !important;
+    }
+    .font-350 {
+        font-weight: 350 !important;
+    }
+    .all-my-dear-grids {
+        line-height: 0;
+    }
+
+    .all-my-dear-grids img {
+        display: block;
+        vertical-align: bottom;
+    }
+    .work-detail-nav .active a {
+        /*background-color: #E2FF83 !important;*/
+        padding-left: 10px;
+    }
+    .work-detail-nav a {
+        transition: all 0.1s ease-in-out;
+    }
+    .work-detail-nav a:hover  {
+        /*background-color: #E2FF83 !important;*/
+        padding-left: 10px;
+    }
+    .work-detail-nav .work-group-title {
+        padding-top: 10px;
+    }
+    .work-detail-nav .work-group-title:first-of-type {
+        padding-top: 0px !important;
+    }
+    .work-detail-nav li.active a::before {
+        content: "→";
+        margin-right: 0.35rem;
+    }
+    .work-detail-nav {
+        column-count: 1;
+        column-gap: 3rem;
+    }
+
+    @media (min-width: 768px) {
+        .work-detail-nav {
+            column-count: 2;
+        }
+    }
+
+    .work-detail-nav li,
+    .work-detail-nav .work-group-title {
+        break-inside: avoid;
+    }
+
+}
+
+@media (max-width: 1920px) {
+}
+@media (max-width: 1770px) {
+}
+@media (max-width: 1336px) {
+}
+@media (max-width: 768px) {
+    #heroNav a span {
+        display: inline-block;
+        padding-left: 2px;
+        padding-right: 2px;
+    }
+}
+@media (min-width: 640px) {
+    .styleme {
+        background: white;
+        height: 50%;
+        bottom: 0px !important;
+        right: 0px;
+        left: 0px;
+        top: unset;
+    }
+}
+@media (max-width: 640px) {
+    .styleme {
+        display: none;
+    }
+    .white-bg-elo {
+        display: none !important;
+    }
+    .manu-nav {
+        display: none;
+    }
+    section main {
+        padding-bottom: 30px;
+    }
+}
+.text-lime-200 {
+    color: #E2FF83 !important;
+}
+
+::selection {
+    background: #000; /* highlight color */
+    color: #E2FF83;         /* text color while selected */
+}
+
+/* Firefox needs this separately */
+::-moz-selection {
+    background: #000; /* highlight color */
+    color: #E2FF83;         /* text color while selected */
+}
+.all-my-dear-grids.grid > *:nth-child(n+4) {
+    background-color: white;
+}
+.mainnav-for-a {
+    margin-right: 4px;
+    margin-left: 4px;
+}
