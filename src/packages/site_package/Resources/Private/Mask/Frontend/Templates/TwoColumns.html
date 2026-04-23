@@ -1,0 +1,20 @@
+<f:if condition="{data.tx_mask_text_first_col}">
+    {data.tx_mask_text_first_col -> f:format.html()}
+</f:if>
+<f:for each="{data.tx_mask_image_first_column}" as="file">
+    <f:image image="{file}" width="200" />
+    {file.description}
+</f:for>
+<f:if condition="{data.tx_mask_color_first_column}">
+    {data.tx_mask_color_first_column}
+</f:if>
+<f:if condition="{data.tx_mask_text_second_column}">
+    {data.tx_mask_text_second_column -> f:format.html()}
+</f:if>
+<f:for each="{data.tx_mask_image_second_column}" as="file">
+    <f:image image="{file}" width="200" />
+    {file.description}
+</f:for>
+<f:if condition="{data.tx_mask_color_second_column}">
+    {data.tx_mask_color_second_column}
+</f:if>

@@ -158,6 +158,8 @@ page {
 
     includeCSS {
         site_package_layout = EXT:site_package/Resources/Public/Assets/Dist/Css/app.css
+        adobe_font = https://use.typekit.net/lbt7wle.css
+        adobe_font.external = 1
     }
 
     includeJSLibs {

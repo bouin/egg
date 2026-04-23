@@ -1,10 +1,10 @@
-<div class="min-h-screen bg-stone-100 text-stone-800">
-    <f:debug>{_all}</f:debug>
+<div class="min-h-screen mainus">
     <f:if condition="{media}">
         <f:then>
             <f:for each="{media}" as="image" iteration="iterator">
                 <f:if condition="{iterator.isFirst}">
-                    <section class="relative h-[78vh] min-h-[640px] overflow-hidden bg-black">
+                    <section class="relative h-[100svh] min-h-[64vh] overflow-hidden bg-black">
+
                         <f:image
                                 image="{image}"
                                 alt="{image.alternative -> f:if(then: image.alternative, else: 'Grünegg')}"
@@ -17,60 +17,42 @@
                         <div class="absolute inset-0 bg-black/15"></div>
 
                         <div class="relative z-10 flex h-full items-center justify-center px-6">
-                            <img
-                                    src="{f:uri.resource(path: 'Images/logo1.svg', extensionName: 'SitePackage')}"
-                                    alt="Grünegg"
-                                    class="w-full max-w-[1150px]"
-                            />
+                            <f:link.page pageUid="2" class="w-[75svw]">
+                                <img
+                                        src="{f:uri.resource(path: 'Images/logo1.svg', extensionName: 'SitePackage')}"
+                                        alt="Grünegg"
+                                        class="w-full max-w-[1150px]"
+                                />
+                            </f:link.page>
                         </div>
 
-                        <a
-                                href="#content"
-                                class="absolute right-0 top-1/2 z-20 -translate-y-1/2 rounded-l-3xl bg-slate-200/95 px-5 py-10 text-[18px] font-light tracking-wide text-stone-700 shadow-md transition hover:bg-slate-100"
-                        >
-                        <span class="block origin-center rotate-[-90deg] whitespace-nowrap">
-                          Dokumentation anfordern
-                        </span>
-                        </a>
                     </section>
                 </f:if>
             </f:for>
         </f:then>
-
-        <f:else>
-            <section class="relative h-[78vh] min-h-[640px] bg-stone-300">
-                <div class="flex h-full items-center justify-center px-6">
-                    <img
-                            src="{f:uri.resource(path: 'Images/logo1.svg', extensionName: 'SitePackage')}"
-                            alt="Grünegg"
-                            class="w-full max-w-[1150px]"
-                    />
-                </div>
-            </section>
-        </f:else>
     </f:if>
 
-    <header class="border-t border-stone-300 bg-stone-100">
-        <div class="mx-auto flex max-w-screen-2xl items-center justify-between px-8 py-8 md:px-12">
-            <a href="{f:uri.page(pageUid: 1)}" class="shrink-0">
+    <header class="border-b border-[var(--font-dark)]">
+        <div class="mx-auto flex max-w-screen-2xl items-center justify-between p-4 md:p-8 md:py-6">
+            <a href="{f:uri.page(pageUid: 2)}" class="shrink-0">
                 <img
-                        src="{f:uri.resource(path: 'Images/logo1.svg', extensionName: 'SitePackage')}"
+                        src="{f:uri.resource(path: 'Images/logo2.svg', extensionName: 'SitePackage')}"
                         alt="Grünegg"
                         class="h-auto w-[220px] md:w-[280px]"
                 />
             </a>
 
             <nav class="hidden md:block">
-                <ul class="flex items-center gap-16 lg:gap-24">
+                <ul class="flex items-center gap-16 lg:gap-20">
                     <f:for each="{mainnavigation}" as="item">
                         <li>
-                            <a
-                                    href="{item.link}"
-                                    target="{item.target}"
-                                    class="text-[20px] font-light tracking-tight transition hover:text-stone-500
-                                    <f:if condition='{item.current} || {item.active}'>text-stone-900</f:if>"
+
+                            <a href="{item.link}"
+                            target="{item.target}"
+                            class="nav-link text-[20px] tracking-tight transition-colors
+                            <f:if condition='{item.current} || {item.active}'>text-stone-900 active</f:if>"
                             >
-                                {item.title}
+                            {item.title}
                             </a>
                         </li>
                     </f:for>
@@ -79,3 +61,92 @@
         </div>
     </header>
 </div>
+
+
+<button
+        id="dok-trigger"
+        onclick="openDokPanel()"
+        class="hidden md:flex fixed right-0 top-3/4 z-50 -translate-y-1/2
+               rounded-l-2xl bg-[var(--color-platin)] shadow-md
+               items-center justify-center"
+        style="padding: 1.5rem 0.75rem; transition: opacity 0.3s ease;"
+        aria-label="Dokumentation anfordern"
+>
+    <span style="writing-mode: vertical-rl; transform: rotate(180deg); white-space: nowrap; font-size: 18px; line-height: 1; color: var(--font-dark);">
+        Dokumentation <br>anfordern
+    </span>
+</button>
+
+
+<div
+        id="dok-panel-outer"
+        class="hidden md:block fixed right-0 top-3/4 z-50 -translate-y-1/2"
+        style="width: 320px; overflow: clip; pointer-events: none;"
+>
+    <div
+            id="dok-panel"
+            class="rounded-l-2xl shadow-xl px-8 py-10 bg-[var(--color-platin)]"
+            style="
+                transform: translateX(100%);
+                transition: transform 0.45s cubic-bezier(0.77, 0, 0.175, 1);
+                pointer-events: auto;
+            "
+    >
+        <button
+                onclick="closeDokPanel()"
+                class="absolute top-5 right-6 text-[var(--font-dark)] hover:text-[var(--font-dark)] transition leading-none"
+                aria-label="Schliessen"
+        >
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line x1="1" y1="1" x2="21" y2="21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <line x1="21" y1="1" x2="1" y2="21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+        </button>
+
+        <div class="mt-4 space-y-8 text-[var(--font-dark)]">
+            <p class="text-[18px] leading-snug">
+                Dominique Andreas Waser
+            </p>
+
+            <div class="space-y-4 text-[17px]">
+                <a href="tel:+41797737519" class="relative inline-block pb-1 group">
+                    <span>+41 79 773 75 19</span>
+                    <span class="absolute bottom-0 left-0 h-px w-1/2 bg-[var(--font-dark)] transition-all duration-300 group-hover:w-full"></span>
+                </a> <br>
+                <a href="mailto:" class="relative inline-block pb-1 group">
+                    <span>E-Mail</span>
+                    <span class="absolute bottom-0 left-0 h-px w-1/2 bg-[var(--font-dark)] transition-all duration-300 group-hover:w-full"></span>
+                </a> <br>
+                <a href="#content" class="relative inline-block pb-1 group">
+                    <span>Kontaktformular</span>
+                    <span class="absolute bottom-0 left-0 h-px w-1/2 bg-[var(--font-dark)] transition-all duration-300 group-hover:w-full"></span>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    function openDokPanel() {
+        var panel = document.getElementById('dok-panel');
+        var trigger = document.getElementById('dok-trigger');
+        panel.style.transform = 'translateX(0)';
+        trigger.style.opacity = '0';
+        trigger.style.pointerEvents = 'none';
+    }
+
+    function closeDokPanel() {
+        var panel = document.getElementById('dok-panel');
+        var trigger = document.getElementById('dok-trigger');
+        panel.style.transform = 'translateX(100%)';
+        setTimeout(function () {
+            trigger.style.opacity = '1';
+            trigger.style.pointerEvents = '';
+        }, 400);
+    }
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeDokPanel();
+    });
+</script>

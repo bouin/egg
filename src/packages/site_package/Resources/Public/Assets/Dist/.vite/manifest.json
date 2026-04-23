@@ -1,4 +1,8 @@
 {
+  "Resources/Public/Assets/Fonts/HelveticaNeueLTPro-Lt.woff": {
+    "file": "Fonts/HelveticaNeueLTPro-Lt.woff",
+    "src": "Resources/Public/Assets/Fonts/HelveticaNeueLTPro-Lt.woff"
+  },
   "Resources/Public/Assets/Src/JavaScript/app.js": {
     "file": "JavaScript/app.js",
     "name": "app",
@@ -7,5 +11,9 @@
     "css": [
       "Css/app.css"
     ]
+  },
+  "Resources/Public/Fonts/HelveticaNeueLTPro-Lt.woff": {
+    "file": "Fonts/HelveticaNeueLTPro-Lt.woff",
+    "src": "Resources/Public/Fonts/HelveticaNeueLTPro-Lt.woff"
   }
 }

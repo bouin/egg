@@ -4,15 +4,12 @@
 
 :root {
   --header-height: 53px;
+  --font-dark: #48433F;
+  --color-beige: #b7a89b;
+  --color-butter: #F6F2EC;
+  --color-platin: #B6BCC0;
 }
 
-@font-face {
-  font-family: 'SiteFont';
-  src: url('../../Fonts/hnl.woff') format('woff');
-  font-display: swap;
-  font-weight: 300;
-  font-style: normal;
-}
 
 @layer base {
   html {
@@ -21,15 +18,30 @@
     letter-spacing: normal;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    color: var(--font-dark);
   }
-
-  body {
-    font-family: 'SiteFont', Helvetica, Arial, sans-serif;
-    font-weight: 300;
+  .mainus, .header {
+    background-color: var(--color-butter);
+  }
+  body * {
+    font-family: helvetica-neue-lt-pro, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    @apply -tracking-normal !important;
   }
 
   p {
     padding-bottom: 0.8rem;
+  }
+  footer *{
+    font-size: 20px;
+    line-height: 1.2;
+    letter-spacing: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: helvetica-neue-lt-pro, sans-serif;
+    font-weight: 400;
+    font-style: normal;
   }
 }
 
@@ -41,4 +53,25 @@
 ::-moz-selection {
   background: #B9A99A;
   color: #BA3605;
+}
+
+.nav-link {
+  position: relative;
+  padding-bottom: 1px;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: currentColor;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
 }

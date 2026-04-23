@@ -1,12 +1,103 @@
-<!-- INFO / FOOTER -->
-<footer id="info" class="relative z-20">
-    <div class="bg-[#E2FF83] text-black px-3 sm:px-3 sm:pt-8 py-3 sm:py-5">
-        <div class="mx-auto [&_*]:text-[5.8vw] sm:[&_*]:text-[34px] [&_*]:leading-[1.1]">
-            <div class="grid ">
-                <div class="lib_renderAnyRecord [&_a:hover]:italic">
-                    <f:cObject typoscriptObjectPath="lib.renderAnyRecord" data="{uid:'2'}"/>
+<footer class="bg-[var(--color-beige)] text-white">
+    <div class="mx-auto p-4 md:p-8 md:pt-28">
+        <div class="flex flex-col justify-between gap-12">
+
+            <div class="grid grid-cols-1 gap-4 md:grid-cols-12 md:gap-8 xl:gap-12">
+                <!-- Left navigation -->
+                <div class="md:col-span-3">
+                    <nav aria-label="Footer Navigation">
+                        <ul class="space-y-1 leading-[1.05]">
+                            <f:for each="{mainnavigation}" as="item">
+                                <li>
+                                    <a
+                                            href="{item.link}"
+                                            target="{f:if(condition: item.target, then: item.target, else: '_self')}"
+                                            class="inline-block transition-opacity duration-200  no-underline hover:underline decoration-[1px] underline-offset-2"
+                                    >
+                                        {item.title}
+                                    </a>
+                                </li>
+                            </f:for>
+                        </ul>
+                    </nav>
+                </div>
+
+                <!-- Middle column -->
+                <div class="md:col-span-3 md:col-start-7">
+                    <div class="space-y-10">
+                        <div class="leading-[1.12] tracking-[-0.02em]">
+                             <p>ADOWIA Immobilien AG <br>
+                                Neufeldstrasse 56 <br>
+                                3604 Thun</p>
+                        </div>
+
+                        <div class="leading-[1.12] ">
+                            <ul class="space-y-1">
+                                <li>
+                                    <a href="https://www.linkedin.com/company/adowia-immobilien-ag" class="inline-block transition-opacity duration-200  no-underline hover:underline decoration-[1px] underline-offset-2" target="_blank">
+                                        LinkedIn
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://www.instagram.com/adowia.immobilien/" class="inline-block transition-opacity duration-200  no-underline hover:underline decoration-[1px] underline-offset-2" target="_blank">
+                                        Instagram
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right column -->
+                <div class="md:col-span-3 md:col-start-10">
+                    <div class="space-y-10 leading-[1.12]">
+                        <div>
+                            <p>
+                                <a href="tel:+41797737519" class="inline-block transition-opacity duration-200  no-underline hover:underline decoration-[1px] underline-offset-2">
+                                    +41 79 773 75 19
+                                </a>
+                                <br>
+                                <f:link.email email="info@adowia.ch" class="inline-block transition-opacity duration-200  no-underline hover:underline decoration-[1px] underline-offset-2"/>
+                            </p>
+                        </div>
+                        <br>
+                        <nav aria-label="Legal Navigation">
+                            <ul class="space-y-1">
+                                    <li>
+                                        <f:link.page pageUid="7" class="inline-block transition-opacity duration-200  no-underline hover:underline decoration-[1px] underline-offset-2">
+                                            Datenschutz
+                                        </f:link.page>
+                                    </li>
+                                <li>
+                                    <f:link.page pageUid="8" class="inline-block transition-opacity duration-200  no-underline hover:underline decoration-[1px] underline-offset-2">
+                                        Impressum
+                                    </f:link.page>
+                                    </li>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
             </div>
+
+            <!-- Bottom branding -->
+            <div class="grid grid-cols-1 items-end gap-8 md:grid-cols-12">
+                <div class="md:col-span-4">
+                    <div class="uppercase leading-none">
+                        <a href="/">
+                            <f:image src="EXT:site_package/Resources/Public/Images/logo1.svg" width="305px" height="auto" alt="Logo" />
+                        </a>
+                    </div>
+                </div>
+
+                <div class="md:col-span-3 md:col-start-7">
+                    <div class="leading-none">
+                        <a href="https://www.adowia.ch" target="_blank" class="inline-block transition-opacity duration-200  no-underline hover:underline decoration-[1px] underline-offset-2">
+                            <f:image src="EXT:site_package/Resources/Public/Images/adowia.svg" width="145px" height="auto" alt="Logo" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </footer>
