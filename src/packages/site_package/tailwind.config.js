@@ -10,6 +10,17 @@ module.exports = {
     ],
     safelist: [
         'link-fixed',
+        'link-fixed',
+        'min-h-[280px]',
+        'md:min-h-[360px]',
+        'min-h-[420px]',
+        'md:min-h-[520px]',
+        'min-h-[560px]',
+        'md:min-h-[700px]',
+        'text-white',
+        'text-[#48433F]',
+        'bg-[#48433F]',
+        'bg-[#F6F2EC]'
     ],
     theme: {
         extend: {},

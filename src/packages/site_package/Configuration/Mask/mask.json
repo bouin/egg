@@ -4,16 +4,86 @@
     "tables": {
         "tt_content": {
             "elements": {
-                "two_columns": {
+                "info_contact_two_columns": {
                     "color": "#000000",
                     "colorOverlay": "#000000",
                     "columns": [
-                        "tx_mask_text_first_col",
-                        "tx_mask_image_first_column",
-                        "tx_mask_color_first_column",
-                        "tx_mask_text_second_column",
-                        "tx_mask_image_second_column",
-                        "tx_mask_color_second_column"
+                        "header",
+                        "tx_mask_make_my_life_colorfull",
+                        "tx_mask_add_image",
+                        "tx_mask_image_on_the_right_side",
+                        "tx_mask_text_whiteee",
+                        "tx_mask_copy_textus",
+                        "tx_mask_extra_text_right_side",
+                        "tx_mask_small_contact_text_below_text",
+                        "tx_mask_smallink_below",
+                        "tx_mask_height_of_the_element",
+                        "tx_mask_design_layout"
+                    ],
+                    "description": "",
+                    "descriptions": [
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        ""
+                    ],
+                    "icon": "",
+                    "iconOverlay": "",
+                    "key": "info_contact_two_columns",
+                    "label": "Info contact two columns",
+                    "labels": [
+                        "",
+                        "Custom color",
+                        "Add image",
+                        "Image right side",
+                        "White text",
+                        "Copy text       ",
+                        "Text with data on the right side",
+                        "Small CTA text below",
+                        "Small link below",
+                        "Height of the element",
+                        "Choose your design"
+                    ],
+                    "shortLabel": "",
+                    "sorting": 3
+                },
+                "simple_image": {
+                    "color": "#000000",
+                    "colorOverlay": "#000000",
+                    "columns": [
+                        "tx_mask_simple_image_class"
+                    ],
+                    "description": "",
+                    "descriptions": [
+                        ""
+                    ],
+                    "icon": "",
+                    "iconOverlay": "",
+                    "key": "simple_image",
+                    "label": "Simple image",
+                    "labels": [
+                        "Add simple image"
+                    ],
+                    "shortLabel": "",
+                    "sorting": 0
+                },
+                "text_on_colorful_background": {
+                    "color": "#000000",
+                    "colorOverlay": "#000000",
+                    "columns": [
+                        "tx_mask_color_of_the_lement",
+                        "header",
+                        "tx_mask_text_text_on_colorful_background",
+                        "tx_mask_text_to_link",
+                        "tx_mask_link",
+                        "tx_mask_layout_choose"
                     ],
                     "description": "",
                     "descriptions": [
@@ -26,13 +96,57 @@
                     ],
                     "icon": "",
                     "iconOverlay": "",
+                    "key": "text_on_colorful_background",
+                    "label": "Text on colorful background",
+                    "labels": [
+                        "Choose color",
+                        "",
+                        "Add text",
+                        "Text to link",
+                        "Link",
+                        "Choose layout"
+                    ],
+                    "shortLabel": "",
+                    "sorting": 2
+                },
+                "two_columns": {
+                    "color": "#000000",
+                    "colorOverlay": "#000000",
+                    "columns": [
+                        "tx_mask_height_of_the_elemnet",
+                        "tx_mask_text_first_col",
+                        "tx_mask_text_white_first_col",
+                        "tx_mask_image_first_column",
+                        "tx_mask_color_first_column",
+                        "tx_mask_text_second_column",
+                        "tx_mask_text_white_second_column",
+                        "tx_mask_image_second_column",
+                        "tx_mask_color_second_column"
+                    ],
+                    "description": "",
+                    "descriptions": [
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        ""
+                    ],
+                    "icon": "",
+                    "iconOverlay": "",
                     "key": "two_columns",
                     "label": "Two columns",
                     "labels": [
+                        "",
                         "Text first column",
+                        "Text white first column",
                         "Image first column",
                         "Color first column",
                         "Text secondcolumn",
+                        "Text white second column",
                         "Image second column",
                         "Color second column"
                     ],
@@ -41,9 +155,19 @@
                 }
             },
             "sql": {
+                "tx_mask_add_image": {
+                    "tt_content": {
+                        "tx_mask_add_image": "int(11) unsigned DEFAULT '0' NOT NULL"
+                    }
+                },
                 "tx_mask_color_first_column": {
                     "tt_content": {
                         "tx_mask_color_first_column": "varchar(255) DEFAULT '' NOT NULL"
+                    }
+                },
+                "tx_mask_color_of_the_lement": {
+                    "tt_content": {
+                        "tx_mask_color_of_the_lement": "varchar(255) DEFAULT '' NOT NULL"
                     }
                 },
                 "tx_mask_color_second_column": {
@@ -51,14 +175,74 @@
                         "tx_mask_color_second_column": "varchar(255) DEFAULT '' NOT NULL"
                     }
                 },
+                "tx_mask_copy_textus": {
+                    "tt_content": {
+                        "tx_mask_copy_textus": "mediumtext"
+                    }
+                },
+                "tx_mask_design_layout": {
+                    "tt_content": {
+                        "tx_mask_design_layout": "varchar(255) DEFAULT '' NOT NULL"
+                    }
+                },
+                "tx_mask_extra_text_right_side": {
+                    "tt_content": {
+                        "tx_mask_extra_text_right_side": "mediumtext"
+                    }
+                },
+                "tx_mask_height_of_the_element": {
+                    "tt_content": {
+                        "tx_mask_height_of_the_element": "varchar(255) DEFAULT '' NOT NULL"
+                    }
+                },
+                "tx_mask_height_of_the_elemnet": {
+                    "tt_content": {
+                        "tx_mask_height_of_the_elemnet": "varchar(255) DEFAULT '' NOT NULL"
+                    }
+                },
                 "tx_mask_image_first_column": {
                     "tt_content": {
                         "tx_mask_image_first_column": "int(11) unsigned DEFAULT '0' NOT NULL"
                     }
                 },
+                "tx_mask_image_on_the_right_side": {
+                    "tt_content": {
+                        "tx_mask_image_on_the_right_side": "int(11) DEFAULT '0' NOT NULL"
+                    }
+                },
                 "tx_mask_image_second_column": {
                     "tt_content": {
                         "tx_mask_image_second_column": "int(11) unsigned DEFAULT '0' NOT NULL"
+                    }
+                },
+                "tx_mask_layout_choose": {
+                    "tt_content": {
+                        "tx_mask_layout_choose": "varchar(255) DEFAULT '' NOT NULL"
+                    }
+                },
+                "tx_mask_link": {
+                    "tt_content": {
+                        "tx_mask_link": "varchar(255) DEFAULT '' NOT NULL"
+                    }
+                },
+                "tx_mask_make_my_life_colorfull": {
+                    "tt_content": {
+                        "tx_mask_make_my_life_colorfull": "varchar(255) DEFAULT '' NOT NULL"
+                    }
+                },
+                "tx_mask_simple_image_class": {
+                    "tt_content": {
+                        "tx_mask_simple_image_class": "int(11) unsigned DEFAULT '0' NOT NULL"
+                    }
+                },
+                "tx_mask_small_contact_text_below_text": {
+                    "tt_content": {
+                        "tx_mask_small_contact_text_below_text": "varchar(255) DEFAULT '' NOT NULL"
+                    }
+                },
+                "tx_mask_smallink_below": {
+                    "tt_content": {
+                        "tx_mask_smallink_below": "varchar(255) DEFAULT '' NOT NULL"
                     }
                 },
                 "tx_mask_text_first_col": {
@@ -70,9 +254,62 @@
                     "tt_content": {
                         "tx_mask_text_second_column": "mediumtext"
                     }
+                },
+                "tx_mask_text_text_on_colorful_background": {
+                    "tt_content": {
+                        "tx_mask_text_text_on_colorful_background": "mediumtext"
+                    }
+                },
+                "tx_mask_text_to_link": {
+                    "tt_content": {
+                        "tx_mask_text_to_link": "varchar(255) DEFAULT '' NOT NULL"
+                    }
+                },
+                "tx_mask_text_white_first_col": {
+                    "tt_content": {
+                        "tx_mask_text_white_first_col": "int(11) DEFAULT '0' NOT NULL"
+                    }
+                },
+                "tx_mask_text_white_second_column": {
+                    "tt_content": {
+                        "tx_mask_text_white_second_column": "int(11) DEFAULT '0' NOT NULL"
+                    }
+                },
+                "tx_mask_text_whiteee": {
+                    "tt_content": {
+                        "tx_mask_text_whiteee": "int(11) DEFAULT '0' NOT NULL"
+                    }
                 }
             },
             "tca": {
+                "header": {
+                    "coreField": 1,
+                    "fullKey": "header",
+                    "key": "header",
+                    "type": "string"
+                },
+                "tx_mask_add_image": {
+                    "config": {
+                        "appearance": {
+                            "elementBrowserEnabled": 1,
+                            "enabledControls": {
+                                "delete": 1,
+                                "dragdrop": 1,
+                                "hide": 1,
+                                "info": 1,
+                                "localize": 1,
+                                "sort": 0
+                            },
+                            "fileUploadAllowed": 1,
+                            "useSortable": 1
+                        },
+                        "minitems": ""
+                    },
+                    "fullKey": "tx_mask_add_image",
+                    "imageoverlayPalette": 1,
+                    "key": "add_image",
+                    "type": "file"
+                },
                 "tx_mask_color_first_column": {
                     "config": {
                         "nullable": 0,
@@ -81,6 +318,16 @@
                     },
                     "fullKey": "tx_mask_color_first_column",
                     "key": "color_first_column",
+                    "type": "colorpicker"
+                },
+                "tx_mask_color_of_the_lement": {
+                    "config": {
+                        "nullable": 0,
+                        "size": 10,
+                        "type": "color"
+                    },
+                    "fullKey": "tx_mask_color_of_the_lement",
+                    "key": "color_of_the_lement",
                     "type": "colorpicker"
                 },
                 "tx_mask_color_second_column": {
@@ -92,6 +339,135 @@
                     "fullKey": "tx_mask_color_second_column",
                     "key": "color_second_column",
                     "type": "colorpicker"
+                },
+                "tx_mask_copy_textus": {
+                    "config": {
+                        "enableRichtext": 1,
+                        "type": "text"
+                    },
+                    "fullKey": "tx_mask_copy_textus",
+                    "key": "copy_textus",
+                    "type": "richtext"
+                },
+                "tx_mask_design_layout": {
+                    "config": {
+                        "fieldWizard": {
+                            "selectIcons": {
+                                "disabled": 1
+                            }
+                        },
+                        "items": [
+                            {
+                                "description": "",
+                                "group": "",
+                                "icon": "",
+                                "label": "Default",
+                                "value": "0"
+                            },
+                            {
+                                "description": "",
+                                "group": "",
+                                "icon": "",
+                                "label": "With contact aside",
+                                "value": "1"
+                            },
+                            {
+                                "description": "",
+                                "group": "",
+                                "icon": "",
+                                "label": "Copy text below",
+                                "value": "2"
+                            }
+                        ],
+                        "renderType": "selectSingle",
+                        "type": "select"
+                    },
+                    "fullKey": "tx_mask_design_layout",
+                    "key": "design_layout",
+                    "type": "select"
+                },
+                "tx_mask_extra_text_right_side": {
+                    "config": {
+                        "enableRichtext": 1,
+                        "type": "text"
+                    },
+                    "fullKey": "tx_mask_extra_text_right_side",
+                    "key": "extra_text_right_side",
+                    "type": "richtext"
+                },
+                "tx_mask_height_of_the_element": {
+                    "config": {
+                        "fieldWizard": {
+                            "selectIcons": {
+                                "disabled": 1
+                            }
+                        },
+                        "items": [
+                            {
+                                "description": "",
+                                "group": "",
+                                "icon": "",
+                                "label": "S",
+                                "value": "0"
+                            },
+                            {
+                                "description": "",
+                                "group": "",
+                                "icon": "",
+                                "label": "M",
+                                "value": "1"
+                            },
+                            {
+                                "description": "",
+                                "group": "",
+                                "icon": "",
+                                "label": "L",
+                                "value": "2"
+                            }
+                        ],
+                        "renderType": "selectSingle",
+                        "type": "select"
+                    },
+                    "fullKey": "tx_mask_height_of_the_element",
+                    "key": "height_of_the_element",
+                    "type": "select"
+                },
+                "tx_mask_height_of_the_elemnet": {
+                    "config": {
+                        "fieldWizard": {
+                            "selectIcons": {
+                                "disabled": 1
+                            }
+                        },
+                        "items": [
+                            {
+                                "description": "",
+                                "group": "",
+                                "icon": "",
+                                "label": "S",
+                                "value": "0"
+                            },
+                            {
+                                "description": "",
+                                "group": "",
+                                "icon": "",
+                                "label": "M",
+                                "value": "1"
+                            },
+                            {
+                                "description": "",
+                                "group": "",
+                                "icon": "",
+                                "label": "L",
+                                "value": "2"
+                            }
+                        ],
+                        "renderType": "selectSingle",
+                        "type": "select"
+                    },
+                    "fullKey": "tx_mask_height_of_the_elemnet",
+                    "key": "height_of_the_elemnet",
+                    "type": "select"
                 },
                 "tx_mask_image_first_column": {
                     "config": {
@@ -115,6 +491,15 @@
                     "key": "image_first_column",
                     "type": "file"
                 },
+                "tx_mask_image_on_the_right_side": {
+                    "config": {
+                        "items": [],
+                        "type": "check"
+                    },
+                    "fullKey": "tx_mask_image_on_the_right_side",
+                    "key": "image_on_the_right_side",
+                    "type": "check"
+                },
                 "tx_mask_image_second_column": {
                     "config": {
                         "appearance": {
@@ -137,6 +522,109 @@
                     "key": "image_second_column",
                     "type": "file"
                 },
+                "tx_mask_layout_choose": {
+                    "config": {
+                        "fieldWizard": {
+                            "selectIcons": {
+                                "disabled": 1
+                            }
+                        },
+                        "items": [
+                            {
+                                "description": "",
+                                "group": "",
+                                "icon": "",
+                                "label": "Default",
+                                "value": "0"
+                            },
+                            {
+                                "description": "",
+                                "group": "",
+                                "icon": "",
+                                "label": "Short headline",
+                                "value": "2"
+                            },
+                            {
+                                "description": "",
+                                "group": "",
+                                "icon": "",
+                                "label": "Only copy text",
+                                "value": "3"
+                            },
+                            {
+                                "description": "",
+                                "group": "",
+                                "icon": "",
+                                "label": "Copy text in the middle",
+                                "value": "4"
+                            }
+                        ],
+                        "renderType": "selectSingle",
+                        "type": "select"
+                    },
+                    "fullKey": "tx_mask_layout_choose",
+                    "key": "layout_choose",
+                    "type": "select"
+                },
+                "tx_mask_link": {
+                    "config": {
+                        "nullable": 0,
+                        "type": "link"
+                    },
+                    "fullKey": "tx_mask_link",
+                    "key": "link",
+                    "type": "link"
+                },
+                "tx_mask_make_my_life_colorfull": {
+                    "config": {
+                        "nullable": 0,
+                        "size": 10,
+                        "type": "color"
+                    },
+                    "fullKey": "tx_mask_make_my_life_colorfull",
+                    "key": "make_my_life_colorfull",
+                    "type": "colorpicker"
+                },
+                "tx_mask_simple_image_class": {
+                    "config": {
+                        "appearance": {
+                            "elementBrowserEnabled": 1,
+                            "enabledControls": {
+                                "delete": 1,
+                                "dragdrop": 1,
+                                "hide": 1,
+                                "info": 1,
+                                "localize": 1,
+                                "sort": 0
+                            },
+                            "fileUploadAllowed": 1,
+                            "useSortable": 1
+                        },
+                        "minitems": ""
+                    },
+                    "fullKey": "tx_mask_simple_image_class",
+                    "imageoverlayPalette": 1,
+                    "key": "simple_image_class",
+                    "type": "file"
+                },
+                "tx_mask_small_contact_text_below_text": {
+                    "config": {
+                        "nullable": 0,
+                        "type": "input"
+                    },
+                    "fullKey": "tx_mask_small_contact_text_below_text",
+                    "key": "small_contact_text_below_text",
+                    "type": "string"
+                },
+                "tx_mask_smallink_below": {
+                    "config": {
+                        "nullable": 0,
+                        "type": "link"
+                    },
+                    "fullKey": "tx_mask_smallink_below",
+                    "key": "smallink_below",
+                    "type": "link"
+                },
                 "tx_mask_text_first_col": {
                     "config": {
                         "enableRichtext": 1,
@@ -154,6 +642,51 @@
                     "fullKey": "tx_mask_text_second_column",
                     "key": "text_second_column",
                     "type": "richtext"
+                },
+                "tx_mask_text_text_on_colorful_background": {
+                    "config": {
+                        "enableRichtext": 1,
+                        "type": "text"
+                    },
+                    "fullKey": "tx_mask_text_text_on_colorful_background",
+                    "key": "text_text_on_colorful_background",
+                    "type": "richtext"
+                },
+                "tx_mask_text_to_link": {
+                    "config": {
+                        "nullable": 0,
+                        "type": "input"
+                    },
+                    "fullKey": "tx_mask_text_to_link",
+                    "key": "text_to_link",
+                    "type": "string"
+                },
+                "tx_mask_text_white_first_col": {
+                    "config": {
+                        "items": [],
+                        "type": "check"
+                    },
+                    "fullKey": "tx_mask_text_white_first_col",
+                    "key": "text_white_first_col",
+                    "type": "check"
+                },
+                "tx_mask_text_white_second_column": {
+                    "config": {
+                        "items": [],
+                        "type": "check"
+                    },
+                    "fullKey": "tx_mask_text_white_second_column",
+                    "key": "text_white_second_column",
+                    "type": "check"
+                },
+                "tx_mask_text_whiteee": {
+                    "config": {
+                        "items": [],
+                        "type": "check"
+                    },
+                    "fullKey": "tx_mask_text_whiteee",
+                    "key": "text_whiteee",
+                    "type": "check"
                 }
             }
         }

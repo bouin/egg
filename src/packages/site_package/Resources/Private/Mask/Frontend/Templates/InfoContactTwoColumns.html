@@ -1,0 +1,280 @@
+<f:variable name="imageOnTheRightSide" value="{data.tx_mask_image_on_the_right_side}" />
+<f:variable name="textWhiteee" value="{data.tx_mask_text_whiteee}" />
+<f:variable name="bgColor" value="{data.tx_mask_make_my_life_colorfull}" />
+<f:variable name="heightOfTheElement" value="{data.tx_mask_height_of_the_element}" />
+
+<f:switch expression="{heightOfTheElement}">
+    <f:case value="0">
+        <f:variable name="heightClass" value="min-h-[280px] md:min-h-[360px]" />
+    </f:case>
+    <f:case value="1">
+        <f:variable name="heightClass" value="min-h-[420px] md:min-h-[520px]" />
+    </f:case>
+    <f:case value="2">
+        <f:variable name="heightClass" value="min-h-[560px] md:min-h-[900px]" />
+    </f:case>
+    <f:defaultCase>
+        <f:variable name="heightClass" value="min-h-[420px] md:min-h-[520px]" />
+    </f:defaultCase>
+</f:switch>
+
+<f:if condition="{textWhiteee}">
+    <f:then>
+        <f:variable name="headlineClass" value="text-white" />
+        <f:variable name="bodyClass" value="text-white/90" />
+        <f:variable name="metaClass" value="text-white/75" />
+        <f:variable name="linkClass" value="text-white border-white/70 hover:border-white" />
+    </f:then>
+    <f:else>
+        <f:variable name="headlineClass" value="text-neutral-700" />
+        <f:variable name="bodyClass" value="text-neutral-700" />
+        <f:variable name="metaClass" value="text-neutral-600" />
+        <f:variable name="linkClass" value="text-neutral-700 border-neutral-700/70 hover:border-neutral-700" />
+    </f:else>
+</f:if>
+
+<f:variable name="hasRightColumn" value="{data.tx_mask_extra_text_right_side} || {data.tx_mask_small_contact_text_below_text} || {data.tx_mask_smallink_below}" />
+
+<f:variable name="imageFile" value="" />
+<f:for each="{data.tx_mask_add_image}" as="file" iteration="iterator">
+    <f:if condition="{iterator.isFirst}">
+        <f:variable name="imageFile" value="{file}" />
+    </f:if>
+</f:for>
+
+<f:variable name="designLayout" value="{data.tx_mask_design_layout}"/>
+
+<section class="w-full">
+    <div class="mx-auto max-w-screen-2xl bg-[{bgColor}]">
+
+        <f:switch expression="{designLayout}">
+            <f:case value="0">
+                <f:if condition="{imageOnTheRightSide}">
+                    <f:then>
+                        <div class="grid grid-cols-1 overflow-hidden md:grid-cols-12">
+                            <!-- Content -->
+                            <div class="order-2 md:order-1 md:col-span-6 lg:col-span-6 {heightClass} flex ">
+                                <div class="flex w-full flex-col justify-between p-8 md:p-10 lg:p-12">
+                                    <div class="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-10">
+
+                                        <div class="{f:if(condition: hasRightColumn, then: 'lg:col-span-8', else: 'lg:col-span-12')}">
+                                            <f:if condition="{data.header}">
+                                                <h2 class=" text-[27px] uppercase md:text-[27px] {headlineClass}">
+                                                    {data.header}
+                                                </h2>
+                                            </f:if>
+
+                                            <f:if condition="{data.tx_mask_copy_textus}">
+                                                <div class="mt-8 text-sm leading-relaxed md:text-[15px] lg:text-base {bodyClass} [&_p]:m-0 [&_p+p]:mt-4">
+                                                    {data.tx_mask_copy_textus -> f:format.html()}
+                                                </div>
+                                            </f:if>
+
+                                            <f:if condition="{data.tx_mask_small_contact_text_below_text}">
+                                                <div class="mt-6 text-xs leading-relaxed md:text-sm {metaClass}">
+                                                    {data.tx_mask_small_contact_text_below_text}
+                                                </div>
+                                            </f:if>
+
+                                            <f:if condition="{data.tx_mask_smallink_below}">
+                                                <div class="mt-6">
+                                                    <f:link.typolink
+                                                            parameter="{data.tx_mask_smallink_below}"
+                                                            class="inline-block border-b pb-1 text-sm font-normal transition {linkClass}">
+                                                        Zum Kontaktformular
+                                                    </f:link.typolink>
+                                                </div>
+                                            </f:if>
+                                        </div>
+
+                                        <f:if condition="{hasRightColumn}">
+                                            <div class="lg:col-span-4 lg:flex lg:flex-col lg:justify-between">
+                                                <f:if condition="{data.tx_mask_extra_text_right_side}">
+                                                    <div class="text-xs leading-relaxed md:text-sm {metaClass} [&_p]:m-0 [&_p+p]:mt-3">
+                                                        {data.tx_mask_extra_text_right_side -> f:format.html()}
+                                                    </div>
+                                                </f:if>
+                                            </div>
+                                        </f:if>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- Image -->
+                            <f:if condition="{imageFile}">
+                                <div class="order-1 md:order-2 md:col-span-6 lg:col-span-7">
+                                    <div class="{heightClass} relative h-full">
+                                        <f:image
+                                                image="{imageFile}"
+                                                width="1400c"
+                                                height="1400c"
+                                                alt="{imageFile.alternative}"
+                                                class="absolute inset-0 h-full w-full object-cover" />
+                                    </div>
+                                </div>
+                            </f:if>
+                        </div>
+                    </f:then>
+
+                    <f:else>
+                        <div class="grid grid-cols-1 overflow-hidden md:grid-cols-12">
+
+                            <!-- Image -->
+                            <f:if condition="{imageFile}">
+                                <div class="order-1 md:col-span-6 lg:col-span-6">
+                                    <div class="{heightClass} relative h-full">
+                                        <f:image
+                                                image="{imageFile}"
+                                                width="1400c"
+                                                height="1400c"
+                                                alt="{imageFile.alternative}"
+                                                class="absolute inset-0 h-full w-full object-cover" />
+                                    </div>
+                                </div>
+                            </f:if>
+
+                            <!-- Content -->
+                            <div class="order-2 md:col-span-6 lg:col-span-5 {heightClass}">
+
+                                <div class="flex w-full flex-col justify-between p-8 md:p-10 lg:p-12">
+                                    <div class="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-10">
+
+                                        <div class="{f:if(condition: hasRightColumn, then: 'lg:col-span-12', else: 'lg:col-span-12')}">
+                                            <f:if condition="{data.header}">
+                                                <h2 class="max-w-[26vw] text-[27px] uppercase md:text-[27px] {headlineClass}">
+                                                    {data.header}
+                                                </h2>
+                                            </f:if>
+
+                                            <f:if condition="{data.tx_mask_copy_textus}">
+                                                <div class="mt-8 grid grid-cols-12 pt-16">
+                                                    <div class="col-span-12 md:col-start-3 md:col-end-12 {bodyClass} [&_p]:m-0 [&_p+p]:mt-4">
+                                                        {data.tx_mask_copy_textus -> f:format.html()}
+                                                    </div>
+                                                </div>
+                                            </f:if>
+
+                                            <f:if condition="{data.tx_mask_small_contact_text_below_text}">
+                                                <div class="mt-6 text-xs leading-relaxed md:text-sm {metaClass}">
+                                                    {data.tx_mask_small_contact_text_below_text}
+                                                </div>
+                                            </f:if>
+
+                                            <f:if condition="{data.tx_mask_smallink_below}">
+                                                <div class="mt-6">
+                                                    <f:link.typolink
+                                                            parameter="{data.tx_mask_smallink_below}"
+                                                            class="inline-block border-b pb-1 text-sm font-normal transition {linkClass}">
+                                                        Zum Kontaktformular
+                                                    </f:link.typolink>
+                                                </div>
+                                            </f:if>
+                                        </div>
+
+                                        <f:if condition="{hasRightColumn}">
+                                            <div class="lg:col-span-4 lg:flex lg:flex-col lg:justify-between">
+                                                <f:if condition="{data.tx_mask_extra_text_right_side}">
+                                                    <div class="text-xs leading-relaxed md:text-sm {metaClass} [&_p]:m-0 [&_p+p]:mt-3">
+                                                        {data.tx_mask_extra_text_right_side -> f:format.html()}
+                                                    </div>
+                                                </f:if>
+                                            </div>
+                                        </f:if>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </f:else>
+                </f:if>
+            </f:case>
+            <f:case value="1">
+                <div class="grid grid-cols-1 overflow-hidden md:grid-cols-12">
+                    <div class="order-2 md:order-1 md:col-span-6 lg:col-span-6 {heightClass} flex">
+                        <div class="flex w-full flex-col justify-between">
+                            <!-- Image -->
+                            <f:if condition="{imageFile}">
+                                <div class="order-1 md:order-2 md:col-span-6 lg:col-span-7">
+                                    <div class="{heightClass} relative h-full">
+                                        <f:image
+                                                image="{imageFile}"
+                                                width="1200c"
+                                                height="1600c"
+                                                alt="{imageFile.alternative}"
+                                                class="absolute inset-0 h-full w-full object-cover" />
+                                    </div>
+                                </div>
+                            </f:if>
+                        </div>
+                    </div>
+                    <div class="order-2 md:order-1 md:col-span-6 lg:col-span-6 {heightClass} flex">
+                        <div class="flex w-full flex-col justify-between p-8 md:p-10 lg:p-12 relative">
+                            <div class="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-10 ">
+
+                                <div class="{f:if(condition: hasRightColumn, then: 'lg:col-span-12', else: 'lg:col-span-12')}">
+
+                                    <f:if condition="{data.tx_mask_copy_textus}">
+                                        <div class="mt-8 {bodyClass} [&_p]:m-0 [&_p+p]:mt-4">
+                                            {data.tx_mask_copy_textus -> f:format.html()}
+                                        </div>
+                                    </f:if>
+
+                                </div>
+
+                                <div class="col-span-4 col-start-7 flex flex-col justify-between group gap-2">
+                                    <f:if condition="{data.tx_mask_extra_text_right_side}">
+                                    <div class="{metaClass}
+                                            [&_p]:m-0
+                                            [&_p+p]:mt-3
+                                            flex
+                                            [&_a]:relative
+                                            [&_a]:inline-block
+                                            [&_a]:mb-1
+                                            [&_a]:after:content-['']
+                                            [&_a]:after:absolute
+                                            [&_a]:after:left-0
+                                            [&_a]:after:bottom-0
+                                            [&_a]:after:w-full
+                                            [&_a]:after:h-px
+                                            [&_a]:after:bg-current
+                                            [&_a]:after:origin-left
+                                            [&_a]:after:scale-x-0
+                                            [&_a]:after:transition-transform
+                                            [&_a]:after:duration-300
+                                            [&_a]:after:ease-out
+                                            [&_a:hover]:after:scale-x-100">
+                                            {data.tx_mask_extra_text_right_side -> f:format.html()}
+                                        </div>
+                                    </f:if>
+                                </div>
+
+                                <f:if condition="{data.tx_mask_smallink_below}">
+                                    <div class="col-span-12 lg:flex lg:flex-col md:absolute bottom-44 left-10">
+                                        <span>
+                                            <f:link.typolink
+                                                    parameter="{data.tx_mask_smallink_below}"
+                                                    class="relative inline-block pb-1 group">
+                                            <f:if condition="{data.tx_mask_small_contact_text_below_text}">
+                                                {data.tx_mask_small_contact_text_below_text}
+                                            </f:if>
+                                            <span class="absolute bottom-0 left-0 h-px w-1/2 bg-[var(--font-dark)] transition-all duration-300 group-hover:w-full"></span>
+                                        </f:link.typolink>
+                                        </span>
+                                    </div>
+                                </f:if>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </f:case>
+            <f:case value="2">
+
+            </f:case>
+        </f:switch>
+
+
+    </div>
+</section>

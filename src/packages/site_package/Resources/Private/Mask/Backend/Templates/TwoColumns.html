@@ -1,0 +1,187 @@
+{namespace f=TYPO3\CMS\Fluid\ViewHelpers}
+
+<style>
+    .two-col-element .bg-cover {
+        background-size: cover;
+    }
+
+    .two-col-element .bg-center {
+        background-position: center;
+    }
+
+    .two-col-element .text-default {
+        color: #48433F;
+    }
+
+    .two-col-element .content-width {
+        max-width: 18rem;
+    }
+
+    .two-col-element .letter-spacing-wide {
+        letter-spacing: 0.18em;
+    }
+
+    .two-col-element.text-block {
+        font-size: 20px;
+        line-height: 1.2;
+    }
+
+    .two-col-element.text-block * {
+        font-size: inherit;
+        line-height: inherit;
+    }
+
+    .element-height-small {
+        min-height: 280px;
+    }
+
+    .element-height-medium {
+        min-height: 420px;
+    }
+
+    .element-height-large {
+        min-height: 560px;
+    }
+
+    @media (min-width: 768px) {
+        .element-height-small {
+            min-height: 360px;
+        }
+
+        .element-height-medium {
+            min-height: 520px;
+        }
+
+        .element-height-large {
+            min-height: 700px;
+        }
+
+        .two-col-element.text-block {
+            font-size: 35px;
+        }
+    }
+</style>
+
+<f:variable name="heightOfTheElement" value="{data.tx_mask_height_of_the_elemnet}" />
+<f:variable name="heightClass" value="element-height-medium" />
+
+<f:variable name="textWhiteFirstCol" value="{data.tx_mask_text_white_first_col}" />
+<f:variable name="textWhiteSecondColumn" value="{data.tx_mask_text_white_second_column}" />
+
+<f:variable name="col1TextClass" value="text-default" />
+<f:variable name="col2TextClass" value="text-default" />
+
+<f:if condition="{textWhiteFirstCol}">
+    <f:variable name="col1TextClass" value="text-white" />
+</f:if>
+
+<f:if condition="{textWhiteSecondColumn}">
+    <f:variable name="col2TextClass" value="text-white" />
+</f:if>
+
+<f:switch expression="{heightOfTheElement}">
+    <f:case value="0">
+        <f:variable name="heightClass" value="element-height-small" />
+    </f:case>
+    <f:case value="1">
+        <f:variable name="heightClass" value="element-height-medium" />
+    </f:case>
+    <f:case value="2">
+        <f:variable name="heightClass" value="element-height-large" />
+    </f:case>
+</f:switch>
+
+<f:variable name="col1HasImages" value="{data.tx_mask_image_first_column -> f:count()}" />
+<f:variable name="col2HasImages" value="{data.tx_mask_image_second_column -> f:count()}" />
+
+<section class="container-fluid px-0 two-col-element text-block">
+    <div class="row g-0">
+
+        <!-- COL 1 -->
+        <div class="col-12 col-md-6">
+            <div class="position-relative overflow-hidden {heightClass}">
+
+                <f:if condition="{col1HasImages}">
+                    <f:then>
+                        <f:for each="{data.tx_mask_image_first_column}" as="file" iteration="i">
+                            <f:if condition="{i.isFirst}">
+                                <div
+                                        class="position-absolute top-0 start-0 w-100 h-100 bg-cover bg-center"
+                                        style="background-image: url('{f:uri.image(image: file)}');">
+                                </div>
+                            </f:if>
+                        </f:for>
+
+                        <f:if condition="{data.tx_mask_text_first_col}">
+                            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center">
+                                <div class="px-4 px-lg-5 py-4 content-width">
+                                    <div class="{col1TextClass} text-uppercase letter-spacing-wide">
+                                        {data.tx_mask_text_first_col -> f:transform.html()}
+                                    </div>
+                                </div>
+                            </div>
+                        </f:if>
+                    </f:then>
+
+                    <f:else>
+                        <div
+                                class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center"
+                                >
+                            <f:if condition="{data.tx_mask_text_first_col}">
+                                <div class="px-4 px-lg-5 py-4 content-width">
+                                    <div class="{col1TextClass} text-uppercase letter-spacing-wide">
+                                        {data.tx_mask_text_first_col -> f:transform.html()}
+                                    </div>
+                                </div>
+                            </f:if>
+                        </div>
+                    </f:else>
+                </f:if>
+
+            </div>
+        </div>
+
+        <!-- COL 2 -->
+        <div class="col-12 col-md-6">
+            <div class="position-relative overflow-hidden {heightClass}">
+
+                <f:if condition="{col2HasImages}">
+                    <f:then>
+                        <f:for each="{data.tx_mask_image_second_column}" as="file" iteration="i">
+                            <f:if condition="{i.isFirst}">
+                                <div
+                                        class="position-absolute top-0 start-0 w-100 h-100 bg-cover bg-center"
+                                        style="background-image: url('{f:uri.image(image: file)}');">
+                                </div>
+                            </f:if>
+                        </f:for>
+
+                        <f:if condition="{data.tx_mask_text_second_column}">
+                            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center text-center">
+                                <div class="px-4 px-lg-5 py-4 content-width">
+                                    <div class="{col2TextClass} text-uppercase letter-spacing-wide">
+                                        {data.tx_mask_text_second_column -> f:transform.html()}
+                                    </div>
+                                </div>
+                            </div>
+                        </f:if>
+                    </f:then>
+
+                    <f:else>
+                        <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center">
+                            <f:if condition="{data.tx_mask_text_second_column}">
+                                <div class="px-4 px-lg-5 py-4 content-width">
+                                    <div class="{col2TextClass} text-uppercase letter-spacing-wide">
+                                        {data.tx_mask_text_second_column -> f:transform.html()}
+                                    </div>
+                                </div>
+                            </f:if>
+                        </div>
+                    </f:else>
+                </f:if>
+
+            </div>
+        </div>
+
+    </div>
+</section>

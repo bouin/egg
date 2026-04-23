@@ -176,6 +176,7 @@ page {
 
     includeJSFooter {
         site_package_scripts = EXT:site_package/Resources/Public/Assets/Dist/JavaScript/app.js
+        swiper = EXT:site_package/Resources/Public/Assets/Dist/JavaScript/app.js
     }
 }
 

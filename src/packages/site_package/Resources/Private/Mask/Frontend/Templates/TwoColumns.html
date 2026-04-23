@@ -1,20 +1,201 @@
-<f:if condition="{data.tx_mask_text_first_col}">
-    {data.tx_mask_text_first_col -> f:format.html()}
+<!--
+  TYPO3 Mask – Two Column Layout
+  ================================
+  Fields used:
+    tx_mask_text_first_col        – RTE / text (col 1)
+    tx_mask_image_first_column    – FAL images (col 1, auto-slider if >1)
+    tx_mask_color_first_column    – hex / CSS color string (col 1)
+    tx_mask_text_second_column    – RTE / text (col 2)
+    tx_mask_image_second_column   – FAL images (col 2)
+    tx_mask_color_second_column   – hex / CSS color string (col 2)
+
+  Dependencies (add to your page TS / layout):
+    - Tailwind CSS (CDN or compiled)
+    - Swiper 11  (CDN below — swap for your build if needed)
+-->
+
+{namespace f=TYPO3\CMS\Fluid\ViewHelpers}
+<f:variable name="heightOfTheElement" value="{data.tx_mask_height_of_the_elemnet}" />
+<f:variable name="heightClass" value="min-h-[420px] md:min-h-[520px]" />
+<f:variable name="textWhiteFirstCol" value="{data.tx_mask_text_white_first_col}" />
+<f:variable name="textWhiteSecondColumn" value="{data.tx_mask_text_white_second_column}" />
+
+<f:variable name="col1TextColorClass" value="text-[#48433F]" />
+<f:variable name="col2TextColorClass" value="text-[#48433F]" />
+
+<f:if condition="{textWhiteFirstCol}">
+    <f:variable name="col1TextColorClass" value="text-white" />
 </f:if>
-<f:for each="{data.tx_mask_image_first_column}" as="file">
-    <f:image image="{file}" width="200" />
-    {file.description}
-</f:for>
-<f:if condition="{data.tx_mask_color_first_column}">
-    {data.tx_mask_color_first_column}
+
+<f:if condition="{textWhiteSecondColumn}">
+    <f:variable name="col2TextColorClass" value="text-white" />
 </f:if>
-<f:if condition="{data.tx_mask_text_second_column}">
-    {data.tx_mask_text_second_column -> f:format.html()}
+<f:switch expression="{heightOfTheElement}">
+    <f:case value="0">
+        <f:variable name="heightClass" value="min-h-[280px] md:min-h-[360px]" />
+    </f:case>
+    <f:case value="1">
+        <f:variable name="heightClass" value="min-h-[420px] md:min-h-[520px]" />
+    </f:case>
+    <f:case value="2">
+        <f:variable name="heightClass" value="min-h-[560px] md:min-h-[700px]" />
+    </f:case>
+</f:switch>
+
+<!-- Swiper CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+
+<f:variable name="col1HasImages" value="{data.tx_mask_image_first_column -> f:count()}" />
+<f:variable name="col2HasImages" value="{data.tx_mask_image_second_column -> f:count()}" />
+<f:variable name="col1IsSlider"  value="{col1HasImages > 1}" />
+
+
+<section class="grid grid-cols-1 md:grid-cols-2 w-full text-block">
+
+    <!-- ─────────────────────────────── COL 1 ─── -->
+    <div class="relative overflow-hidden {heightClass}">
+
+        <!--
+          ══ COL 1: IMAGE / SLIDER MODE ══
+          Shown when image(s) are assigned.
+          If only 1 image → plain background image.
+          If >1 images    → Swiper auto-play, no dots.
+        -->
+        <f:if condition="{col1HasImages}">
+            <f:then>
+
+                <!-- single image (no slider overhead) -->
+                <f:if condition="{col1IsSlider}">
+                    <f:else>
+                        <f:for each="{data.tx_mask_image_first_column}" as="file" iteration="i">
+                            <f:if condition="{i.isFirst}">
+                                <div class="absolute inset-0 bg-cover bg-center"
+                                     style="background-image: url('{f:uri.image(image: file)}')">
+                                </div>
+                            </f:if>
+                        </f:for>
+                    </f:else>
+                </f:if>
+
+                <!-- auto-play slider (>1 images) -->
+                <f:if condition="{col1IsSlider}">
+                    <div class="swiper col1-swiper absolute inset-0 w-full h-full">
+                        <div class="swiper-wrapper h-full">
+                            <f:for each="{data.tx_mask_image_first_column}" as="file">
+                                <div class="swiper-slide bg-cover bg-center h-full"
+                                     style="background-image: url('{f:uri.image(image: file)}')">
+                                </div>
+                            </f:for>
+                        </div>
+                    </div>
+                </f:if>
+
+                <!-- optional text overlay on top of image -->
+                <f:if condition="{data.tx_mask_text_first_col}">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="px-10 py-8 max-w-xs">
+                            <div class="{col1TextColorClass} uppercase">
+                                {data.tx_mask_text_first_col -> f:format.html()}
+                            </div>
+                        </div>
+                    </div>
+                </f:if>
+
+            </f:then>
+
+            <!--
+              ══ COL 1: TEXT / COLOR MODE ══
+              No image assigned → render colored panel with text.
+            -->
+            <f:else>
+                <div class="absolute inset-0 flex items-center justify-center" style="background-color: {data.tx_mask_color_first_column};">
+                    <f:if condition="{data.tx_mask_text_first_col}">
+                        <div class="px-10 py-8 max-w-xs">
+                            <div class="{col1TextColorClass} text-center uppercase col1-text-content">
+                                {data.tx_mask_text_first_col -> f:format.html()}
+                            </div>
+                        </div>
+                    </f:if>
+                </div>
+            </f:else>
+        </f:if>
+
+    </div>
+    <!-- ─────────────────────────────── /COL 1 ─── -->
+
+
+    <!-- ─────────────────────────────── COL 2 ─── -->
+    <div class="relative overflow-hidden {heightClass}">
+
+        <!--
+          ══ COL 2: IMAGE MODE ══
+        -->
+        <f:if condition="{col2HasImages}">
+            <f:then>
+                <f:for each="{data.tx_mask_image_second_column}" as="file" iteration="i">
+                    <f:if condition="{i.isFirst}">
+                        <div class="absolute inset-0 bg-cover bg-center"
+                             style="background-image: url('{f:uri.image(image: file)}')">
+                        </div>
+                    </f:if>
+                </f:for>
+
+                <!-- optional text overlay on top of image -->
+                <f:if condition="{data.tx_mask_text_second_column}">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="px-10 py-8 max-w-xs">
+                            <div class="{col2TextColorClass} text-center uppercase">
+                                {data.tx_mask_text_second_column -> f:format.html()}
+                            </div>
+                        </div>
+                    </div>
+                </f:if>
+            </f:then>
+
+            <!--
+              ══ COL 2: TEXT / COLOR MODE ══
+            -->
+            <f:else>
+                <div class="absolute inset-0 flex items-center justify-center"
+                     style="background-color: {data.tx_mask_color_second_column};">
+                    <f:if condition="{data.tx_mask_text_second_column}">
+                        <div class="px-10 py-8 max-w-xs">
+                            <div class="{col2TextColorClass} uppercase text-center">
+                                {data.tx_mask_text_second_column -> f:format.html()}
+                            </div>
+                        </div>
+                    </f:if>
+                </div>
+            </f:else>
+        </f:if>
+
+    </div>
+    <!-- ─────────────────────────────── /COL 2 ─── -->
+
+</section>
+
+
+
+<f:if condition="{col1IsSlider}">
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            new Swiper('.col1-swiper', {
+                loop: true,
+                speed: 900,
+                autoplay: {
+                    delay: 3500,
+                    disableOnInteraction: false,
+                },
+                // no pagination, no arrows — matches the design spec
+                effect: 'fade',          // change to 'slide' for a slide transition
+                fadeEffect: {
+                    crossFade: true,
+                },
+            });
+        });
+    </script>
 </f:if>
-<f:for each="{data.tx_mask_image_second_column}" as="file">
-    <f:image image="{file}" width="200" />
-    {file.description}
-</f:for>
-<f:if condition="{data.tx_mask_color_second_column}">
-    {data.tx_mask_color_second_column}
-</f:if>
+
+

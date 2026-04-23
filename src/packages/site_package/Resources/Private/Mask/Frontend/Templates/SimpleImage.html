@@ -1,0 +1,106 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"/>
+
+<f:if condition="{data.tx_mask_simple_image_class}">
+    <f:variable name="images" value="{data.tx_mask_simple_image_class}" />
+
+    <div>
+        <f:if condition="{images.1}">
+            <f:then>
+                <!-- Desktop swiper -->
+                <div class="hidden md:block">
+                    <div class="swiper simple-image-swiper-desktop">
+                        <div class="swiper-wrapper">
+                            <f:for each="{images}" as="file">
+                                <div class="swiper-slide">
+                                    <f:image
+                                            image="{file}"
+                                            width="1920c"
+                                            height="1080c"
+                                            alt="{file.alternative}"
+                                            class="w-full h-auto"
+                                    />
+                                </div>
+                            </f:for>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile swiper -->
+                <div class="block md:hidden">
+                    <div class="swiper simple-image-swiper-mobile">
+                        <div class="swiper-wrapper">
+                            <f:for each="{images}" as="file">
+                                <div class="swiper-slide">
+                                    <f:image
+                                            image="{file}"
+                                            width="800c"
+                                            height="1200c"
+                                            alt="{file.alternative}"
+                                            class="w-full h-auto"
+                                    />
+                                </div>
+                            </f:for>
+                        </div>
+                    </div>
+                </div>
+            </f:then>
+
+            <f:else>
+                <!-- Desktop single image -->
+                <div class="hidden md:block">
+                    <f:for each="{images}" as="file">
+                        <f:image
+                                image="{file}"
+                                width="1920c"
+                                height="1280c"
+                                alt="{file.alternative}"
+                                class="w-full h-auto"
+                        />
+                    </f:for>
+                </div>
+
+                <!-- Mobile single image -->
+                <div class="block md:hidden">
+                    <f:for each="{images}" as="file">
+                        <f:image
+                                image="{file}"
+                                width="800c"
+                                height="1200c"
+                                alt="{file.alternative}"
+                                class="w-full h-auto"
+                        />
+                    </f:for>
+                </div>
+            </f:else>
+        </f:if>
+    </div>
+</f:if>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        if (document.querySelector('.simple-image-swiper-desktop')) {
+            new Swiper('.simple-image-swiper-desktop', {
+                slidesPerView: 1,
+                loop: true,
+                speed: 1000,
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                },
+            });
+        }
+
+        if (document.querySelector('.simple-image-swiper-mobile')) {
+            new Swiper('.simple-image-swiper-mobile', {
+                slidesPerView: 1,
+                loop: true,
+                speed: 1000,
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                },
+            });
+        }
+    });
+</script>

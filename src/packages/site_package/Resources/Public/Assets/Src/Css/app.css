@@ -75,3 +75,49 @@
 .nav-link.active::after {
   width: 100%;
 }
+
+.link-underline {
+  position: relative;
+  padding-bottom: 1px;
+}
+
+.link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: currentColor;
+  transition: width 0.3s ease;
+}
+
+.link-underline:hover::after,
+.link-underline.is-active::after {
+  width: 100%;
+}
+@layer components {
+  .text-block {
+    font-size: 35px;
+    line-height: 1.2;
+  }
+
+  .text-block * {
+    font-size: inherit;
+    line-height: inherit;
+  }
+
+  /* Tablet */
+  @media (max-width: 640px) {
+    .text-block {
+      font-size: 26px;
+    }
+  }
+
+  /* Desktop */
+  @media (max-width: 1024px) {
+    .text-block {
+      font-size: 28px;
+    }
+  }
+}
