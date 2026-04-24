@@ -4,6 +4,29 @@
     "tables": {
         "tt_content": {
             "elements": {
+                "akkordeon": {
+                    "color": "#000000",
+                    "colorOverlay": "#000000",
+                    "columns": [
+                        "header",
+                        "tx_mask_accordion_with_data"
+                    ],
+                    "description": "",
+                    "descriptions": [
+                        "",
+                        ""
+                    ],
+                    "icon": "",
+                    "iconOverlay": "",
+                    "key": "akkordeon",
+                    "label": "Akkordeon",
+                    "labels": [
+                        "",
+                        "Add accordion row"
+                    ],
+                    "shortLabel": "",
+                    "sorting": 5
+                },
                 "info_contact_two_columns": {
                     "color": "#000000",
                     "colorOverlay": "#000000",
@@ -53,6 +76,32 @@
                     ],
                     "shortLabel": "",
                     "sorting": 3
+                },
+                "location_map": {
+                    "color": "#000000",
+                    "colorOverlay": "#000000",
+                    "columns": [
+                        "header",
+                        "tx_mask_tabs_map",
+                        "tx_mask_places"
+                    ],
+                    "description": "",
+                    "descriptions": [
+                        "",
+                        "",
+                        ""
+                    ],
+                    "icon": "",
+                    "iconOverlay": "",
+                    "key": "location_map",
+                    "label": "location map",
+                    "labels": [
+                        "",
+                        "Tabs",
+                        "Places"
+                    ],
+                    "shortLabel": "",
+                    "sorting": 4
                 },
                 "simple_image": {
                     "color": "#000000",
@@ -153,7 +202,7 @@
                         "Text white first column",
                         "Image first column",
                         "Color first column",
-                        "Add e-mail form",
+                        "Add an email form or an accordion",
                         "Text secondcolumn",
                         "Text white second column",
                         "Image second column",
@@ -164,6 +213,11 @@
                 }
             },
             "sql": {
+                "tx_mask_accordion_with_data": {
+                    "tt_content": {
+                        "tx_mask_accordion_with_data": "int(11) unsigned DEFAULT '0' NOT NULL"
+                    }
+                },
                 "tx_mask_add_image": {
                     "tt_content": {
                         "tx_mask_add_image": "int(11) unsigned DEFAULT '0' NOT NULL"
@@ -249,6 +303,11 @@
                         "tx_mask_make_my_life_colorfull": "varchar(255) DEFAULT '' NOT NULL"
                     }
                 },
+                "tx_mask_places": {
+                    "tt_content": {
+                        "tx_mask_places": "int(11) unsigned DEFAULT '0' NOT NULL"
+                    }
+                },
                 "tx_mask_simple_image_class": {
                     "tt_content": {
                         "tx_mask_simple_image_class": "int(11) unsigned DEFAULT '0' NOT NULL"
@@ -262,6 +321,11 @@
                 "tx_mask_smallink_below": {
                     "tt_content": {
                         "tx_mask_smallink_below": "varchar(255) DEFAULT '' NOT NULL"
+                    }
+                },
+                "tx_mask_tabs_map": {
+                    "tt_content": {
+                        "tx_mask_tabs_map": "int(11) unsigned DEFAULT '0' NOT NULL"
                     }
                 },
                 "tx_mask_text_first_col": {
@@ -311,6 +375,34 @@
                     "fullKey": "header",
                     "key": "header",
                     "type": "string"
+                },
+                "tx_mask_accordion_with_data": {
+                    "config": {
+                        "appearance": {
+                            "enabledControls": {
+                                "delete": 1,
+                                "dragdrop": 1,
+                                "hide": 1,
+                                "info": 1,
+                                "localize": 1,
+                                "new": 1,
+                                "sort": 1
+                            },
+                            "levelLinksPosition": "top",
+                            "showAllLocalizationLink": 1,
+                            "showNewRecordLink": 1,
+                            "showPossibleLocalizationRecords": 1,
+                            "useSortable": 1
+                        },
+                        "foreign_field": "parentid",
+                        "foreign_sortby": "sorting",
+                        "foreign_table": "--inlinetable--",
+                        "foreign_table_field": "parenttable",
+                        "type": "inline"
+                    },
+                    "fullKey": "tx_mask_accordion_with_data",
+                    "key": "accordion_with_data",
+                    "type": "inline"
                 },
                 "tx_mask_add_image": {
                     "config": {
@@ -375,7 +467,8 @@
                 },
                 "tx_mask_content_second_column": {
                     "cTypes": [
-                        "powermail_pi1"
+                        "powermail_pi1",
+                        "mask_akkordeon"
                     ],
                     "config": {
                         "appearance": {
@@ -656,6 +749,34 @@
                     "key": "make_my_life_colorfull",
                     "type": "colorpicker"
                 },
+                "tx_mask_places": {
+                    "config": {
+                        "appearance": {
+                            "enabledControls": {
+                                "delete": 1,
+                                "dragdrop": 1,
+                                "hide": 1,
+                                "info": 1,
+                                "localize": 1,
+                                "new": 1,
+                                "sort": 1
+                            },
+                            "levelLinksPosition": "top",
+                            "showAllLocalizationLink": 1,
+                            "showNewRecordLink": 1,
+                            "showPossibleLocalizationRecords": 1,
+                            "useSortable": 1
+                        },
+                        "foreign_field": "parentid",
+                        "foreign_sortby": "sorting",
+                        "foreign_table": "--inlinetable--",
+                        "foreign_table_field": "parenttable",
+                        "type": "inline"
+                    },
+                    "fullKey": "tx_mask_places",
+                    "key": "places",
+                    "type": "inline"
+                },
                 "tx_mask_simple_image_class": {
                     "config": {
                         "appearance": {
@@ -695,6 +816,34 @@
                     "fullKey": "tx_mask_smallink_below",
                     "key": "smallink_below",
                     "type": "link"
+                },
+                "tx_mask_tabs_map": {
+                    "config": {
+                        "appearance": {
+                            "enabledControls": {
+                                "delete": 1,
+                                "dragdrop": 1,
+                                "hide": 1,
+                                "info": 1,
+                                "localize": 1,
+                                "new": 1,
+                                "sort": 1
+                            },
+                            "levelLinksPosition": "top",
+                            "showAllLocalizationLink": 1,
+                            "showNewRecordLink": 1,
+                            "showPossibleLocalizationRecords": 1,
+                            "useSortable": 1
+                        },
+                        "foreign_field": "parentid",
+                        "foreign_sortby": "sorting",
+                        "foreign_table": "--inlinetable--",
+                        "foreign_table_field": "parenttable",
+                        "type": "inline"
+                    },
+                    "fullKey": "tx_mask_tabs_map",
+                    "key": "tabs_map",
+                    "type": "inline"
                 },
                 "tx_mask_text_first_col": {
                     "config": {
@@ -767,6 +916,230 @@
                     "fullKey": "tx_mask_text_whiteee",
                     "key": "text_whiteee",
                     "type": "check"
+                }
+            }
+        },
+        "tx_mask_accordion_with_data": {
+            "sql": {
+                "tx_mask_text_accordeon": {
+                    "tx_mask_accordion_with_data": {
+                        "tx_mask_text_accordeon": "mediumtext"
+                    }
+                },
+                "tx_mask_title_of_the_immo": {
+                    "tx_mask_accordion_with_data": {
+                        "tx_mask_title_of_the_immo": "varchar(255) DEFAULT '' NOT NULL"
+                    }
+                }
+            },
+            "tca": {
+                "tx_mask_text_accordeon": {
+                    "config": {
+                        "enableRichtext": 1,
+                        "type": "text"
+                    },
+                    "fullKey": "tx_mask_text_accordeon",
+                    "inlineParent": "tx_mask_accordion_with_data",
+                    "key": "text_accordeon",
+                    "label": "Text",
+                    "order": 2,
+                    "type": "richtext"
+                },
+                "tx_mask_title_of_the_immo": {
+                    "config": {
+                        "nullable": 0,
+                        "type": "input"
+                    },
+                    "fullKey": "tx_mask_title_of_the_immo",
+                    "inlineParent": "tx_mask_accordion_with_data",
+                    "key": "title_of_the_immo",
+                    "label": "Title",
+                    "order": 1,
+                    "type": "string"
+                }
+            }
+        },
+        "tx_mask_places": {
+            "sql": {
+                "tx_mask_category": {
+                    "tx_mask_places": {
+                        "tx_mask_category": "varchar(255) DEFAULT '' NOT NULL"
+                    }
+                },
+                "tx_mask_latitude": {
+                    "tx_mask_places": {
+                        "tx_mask_latitude": "varchar(255) DEFAULT '' NOT NULL"
+                    }
+                },
+                "tx_mask_longitude": {
+                    "tx_mask_places": {
+                        "tx_mask_longitude": "varchar(255) DEFAULT '' NOT NULL"
+                    }
+                },
+                "tx_mask_titel_place": {
+                    "tx_mask_places": {
+                        "tx_mask_titel_place": "varchar(255) DEFAULT '' NOT NULL"
+                    }
+                }
+            },
+            "tca": {
+                "tx_mask_category": {
+                    "config": {
+                        "fieldWizard": {
+                            "selectIcons": {
+                                "disabled": 1
+                            }
+                        },
+                        "items": [
+                            {
+                                "description": "",
+                                "group": "",
+                                "icon": "",
+                                "label": "ov",
+                                "value": "1"
+                            },
+                            {
+                                "description": "",
+                                "group": "",
+                                "icon": "",
+                                "label": "school",
+                                "value": "2"
+                            },
+                            {
+                                "description": "",
+                                "group": "",
+                                "icon": "",
+                                "label": "shopping",
+                                "value": "3"
+                            },
+                            {
+                                "description": "",
+                                "group": "",
+                                "icon": "",
+                                "label": "health",
+                                "value": "4"
+                            }
+                        ],
+                        "renderType": "selectSingle",
+                        "type": "select"
+                    },
+                    "fullKey": "tx_mask_category",
+                    "inlineParent": "tx_mask_places",
+                    "key": "category",
+                    "label": "Category ",
+                    "order": 2,
+                    "type": "select"
+                },
+                "tx_mask_latitude": {
+                    "config": {
+                        "nullable": 0,
+                        "type": "input"
+                    },
+                    "fullKey": "tx_mask_latitude",
+                    "inlineParent": "tx_mask_places",
+                    "key": "latitude",
+                    "label": "Latitude",
+                    "order": 3,
+                    "type": "string"
+                },
+                "tx_mask_longitude": {
+                    "config": {
+                        "nullable": 0,
+                        "type": "input"
+                    },
+                    "fullKey": "tx_mask_longitude",
+                    "inlineParent": "tx_mask_places",
+                    "key": "longitude",
+                    "label": "Longitude",
+                    "order": 4,
+                    "type": "string"
+                },
+                "tx_mask_titel_place": {
+                    "config": {
+                        "nullable": 0,
+                        "type": "input"
+                    },
+                    "fullKey": "tx_mask_titel_place",
+                    "inlineParent": "tx_mask_places",
+                    "key": "titel_place",
+                    "label": "Name \/ Place",
+                    "order": 1,
+                    "type": "string"
+                }
+            }
+        },
+        "tx_mask_tabs_map": {
+            "sql": {
+                "tx_mask_key": {
+                    "tx_mask_tabs_map": {
+                        "tx_mask_key": "varchar(255) DEFAULT '' NOT NULL"
+                    }
+                },
+                "tx_mask_titel": {
+                    "tx_mask_tabs_map": {
+                        "tx_mask_titel": "varchar(255) DEFAULT '' NOT NULL"
+                    }
+                }
+            },
+            "tca": {
+                "tx_mask_key": {
+                    "config": {
+                        "fieldWizard": {
+                            "selectIcons": {
+                                "disabled": 1
+                            }
+                        },
+                        "items": [
+                            {
+                                "description": "",
+                                "group": "",
+                                "icon": "",
+                                "label": "ov",
+                                "value": "1"
+                            },
+                            {
+                                "description": "",
+                                "group": "",
+                                "icon": "",
+                                "label": "school",
+                                "value": "2"
+                            },
+                            {
+                                "description": "",
+                                "group": "",
+                                "icon": "",
+                                "label": "shopping",
+                                "value": "3"
+                            },
+                            {
+                                "description": "",
+                                "group": "",
+                                "icon": "",
+                                "label": "health",
+                                "value": "4"
+                            }
+                        ],
+                        "renderType": "selectSingle",
+                        "type": "select"
+                    },
+                    "fullKey": "tx_mask_key",
+                    "inlineParent": "tx_mask_tabs_map",
+                    "key": "key",
+                    "label": "Key (for category)",
+                    "order": 2,
+                    "type": "select"
+                },
+                "tx_mask_titel": {
+                    "config": {
+                        "nullable": 0,
+                        "type": "input"
+                    },
+                    "fullKey": "tx_mask_titel",
+                    "inlineParent": "tx_mask_tabs_map",
+                    "key": "titel",
+                    "label": "Titel",
+                    "order": 1,
+                    "type": "string"
                 }
             }
         }

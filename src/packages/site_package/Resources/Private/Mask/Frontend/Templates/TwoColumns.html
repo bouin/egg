@@ -119,11 +119,11 @@
 
     </div>
     <!-- ─────────────────────────────── /COL 2 ─── -->
-    <div class="relative overflow-hidden {heightClass} second-col">
+    <div class="relative overflow-hidden {heightClass} second-col bg-[{data.tx_mask_color_second_column}]">
         <!--══ COL 2: IMAGE MODE ══-->
         <f:if condition="{data.tx_mask_content_second_column}">
             <f:then>
-                <div class="flex w-full flex-col justify-between px-6 md:px-10 lg:px-12 py-8 md:py-12 lg:py-16 relative" style="background-color: {data.tx_mask_color_second_column};">
+                <div class="flex w-full flex-col justify-between {f:if(condition: '{data.tx_mask_content_second_column.0.uid}==31',then:'',else:'px-6 md:px-10 lg:px-12 py-8 md:py-12 lg:py-16')} relative" style="background-color: {data.tx_mask_color_second_column};">
                     <div class="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-10 ">
                         <div class="col-span-12">
                             <f:for each="{data.tx_mask_content_second_column}" as="data_item">

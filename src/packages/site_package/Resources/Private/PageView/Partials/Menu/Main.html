@@ -179,9 +179,11 @@
 
     document.addEventListener('DOMContentLoaded', function () {
         var stickyHeader = document.getElementById('sticky-header');
+        var isPage2 = document.body.classList.contains('page-2');
+        var threshold = isPage2 ? 1500 : 500;
 
         function toggleStickyHeader() {
-            if (window.scrollY > 400) {
+            if (window.scrollY > threshold) {
                 stickyHeader.classList.remove('translate-y-[-100%]');
                 stickyHeader.classList.add('translate-y-0');
             } else {

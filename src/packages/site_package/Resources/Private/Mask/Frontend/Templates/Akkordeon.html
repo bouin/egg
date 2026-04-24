@@ -1,0 +1,87 @@
+<f:if condition="{data.tx_mask_accordion_with_data}">
+    <div class="w-full border-t border-[#5a554f] akkordeon">
+        <f:for each="{data.tx_mask_accordion_with_data}" as="data_item" iteration="iterator">
+            <details class="group {f:if(condition: '{iterator.isFirst}', then: '', else: 'border-t border-[#5a554f]')} {f:if(condition: '{iterator.isLast}', then: 'border-b border-[#5a554f]')}">
+                <summary class="relative cursor-pointer list-none py-8 uppercase text-[#46433f] px-8 md:px-12 marker:hidden">
+                    <span class="block w-full text-left !text-left inline-block">
+                        <f:if condition="{data_item.tx_mask_title_of_the_immo}">
+                            {data_item.tx_mask_title_of_the_immo}
+                        </f:if>
+                    </span>
+                    <span class="absolute right-12 top-1/2 -translate-y-1/2 group-open:hidden">
+                        +
+                    </span>
+
+                    <span class="absolute right-12 top-1/2 -translate-y-1/2 hidden group-open:block">
+                        −
+                    </span>
+                </summary>
+
+                <div class="akkordeon-content pb-12 leading-relaxed text-[#46433f] font-20">
+                    <div class="px-8 md:px-12">
+                        <f:if condition="{data_item.tx_mask_text_accordeon}">
+                            {data_item.tx_mask_text_accordeon -> f:format.html()}
+                        </f:if>
+                    </div>
+                </div>
+            </details>
+        </f:for>
+    </div>
+</f:if>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const accordions = document.querySelectorAll('.akkordeon details');
+
+        accordions.forEach((details) => {
+            const summary = details.querySelector('summary');
+            const content = details.querySelector('.akkordeon-content');
+
+            content.style.maxHeight = details.open ? content.scrollHeight + 'px' : '0px';
+
+            summary.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const isOpen = details.open;
+
+                accordions.forEach((other) => {
+                    const otherContent = other.querySelector('.akkordeon-content');
+
+                    if (other !== details && other.open) {
+                        otherContent.style.maxHeight = otherContent.scrollHeight + 'px';
+
+                        requestAnimationFrame(() => {
+                            otherContent.style.maxHeight = '0px';
+                            otherContent.style.opacity = '0';
+                        });
+
+                        setTimeout(() => {
+                            other.open = false;
+                        }, 350);
+                    }
+                });
+
+                if (!isOpen) {
+                    details.open = true;
+                    content.style.maxHeight = '0px';
+                    content.style.opacity = '0';
+
+                    requestAnimationFrame(() => {
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                        content.style.opacity = '1';
+                    });
+                } else {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+
+                    requestAnimationFrame(() => {
+                        content.style.maxHeight = '0px';
+                        content.style.opacity = '0';
+                    });
+
+                    setTimeout(() => {
+                        details.open = false;
+                    }, 350);
+                }
+            });
+        });
+    });
+</script>

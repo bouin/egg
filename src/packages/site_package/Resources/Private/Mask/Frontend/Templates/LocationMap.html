@@ -1,0 +1,158 @@
+<f:asset.css identifier="leaflet-css" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<f:asset.script identifier="leaflet-js" src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" />
+
+<div class="location-map" data-map-id="map-{data.uid}">
+
+    <div class="location-map__tabs">
+        <f:for each="{data.tx_mask_tabs_map}" as="tab" iteration="tabIterator">
+            <button
+                    class="location-map__tab {f:if(condition: tabIterator.isFirst, then: 'is-active')}"
+                    type="button"
+                    data-map-tab="{tab.tx_mask_key}"
+            >
+                {tab.tx_mask_titel}
+            </button>
+        </f:for>
+    </div>
+
+    <div class="location-map__body">
+        <div class="location-map__canvas" id="map-{data.uid}"></div>
+
+        <div class="location-map__list">
+            <ol>
+                <f:for each="{data.tx_mask_places}" as="place">
+                    <li data-map-place="{place.tx_mask_category}">
+                        {place.tx_mask_titel_place}
+                    </li>
+                </f:for>
+            </ol>
+        </div>
+    </div>
+
+    <script type="application/json" id="map-data-{data.uid}">
+        [
+            <f:for each="{data.tx_mask_places}" as="place" iteration="placeIterator">
+            {
+                "title": "<f:format.htmlspecialchars>{place.tx_mask_titel_place}</f:format.htmlspecialchars>",
+                "category": "{place.tx_mask_category}",
+                "lat": "{place.tx_mask_latitude}",
+                "lng": "{place.tx_mask_longitude}"
+            }<f:if condition="{placeIterator.isLast}"><f:else>,</f:else></f:if>
+            </f:for>
+        ]
+    </script>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".location-map").forEach(function (wrapper) {
+            const mapId = wrapper.dataset.mapId;
+            const mapElement = document.getElementById(mapId);
+            const dataElement = document.getElementById("map-data-" + mapId.replace("map-", ""));
+
+            if (!mapElement || !dataElement) return;
+
+            const places = JSON.parse(dataElement.textContent || "[]")
+                .map(function (place) {
+                    return {
+                        title: place.title,
+                        category: String(place.category),
+                        lat: parseFloat(String(place.lat).replace(",", ".")),
+                        lng: parseFloat(String(place.lng).replace(",", "."))
+                    };
+                })
+                .filter(function (place) {
+                    return place.title && place.category && !isNaN(place.lat) && !isNaN(place.lng);
+                });
+
+            if (!places.length) return;
+
+            const map = L.map(mapElement, {
+                scrollWheelZoom: false,
+                zoomControl: false
+            });
+
+            L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+                attribution: "&copy; OpenStreetMap"
+            }).addTo(map);
+
+            const markers = [];
+
+            function clearMarkers() {
+                markers.forEach(function (marker) {
+                    map.removeLayer(marker);
+                });
+                markers.length = 0;
+            }
+
+            function renderCategory(category) {
+                clearMarkers();
+
+                const filteredPlaces = places.filter(function (place) {
+                    return place.category === String(category);
+                });
+
+                let visibleIndex = 1;
+
+                wrapper.querySelectorAll("[data-map-place]").forEach(function (item) {
+                    const isVisible = item.dataset.mapPlace === String(category);
+
+                    item.classList.toggle("is-visible", isVisible);
+
+                    if (isVisible) {
+                        item.setAttribute("data-number", visibleIndex);
+                        visibleIndex++;
+                    } else {
+                        item.removeAttribute("data-number");
+                    }
+                });
+
+                if (!filteredPlaces.length) return;
+
+                const bounds = [];
+
+                filteredPlaces.forEach(function (place, index) {
+                    const numberIcon = L.divIcon({
+                        className: "location-map__number-marker",
+                        html: String(index + 1),
+                        iconSize: [32, 32],
+                        iconAnchor: [16, 16]
+                    });
+
+                    const marker = L.marker([place.lat, place.lng], {
+                        icon: numberIcon,
+                        title: place.title
+                    }).addTo(map);
+
+                    markers.push(marker);
+                    bounds.push([place.lat, place.lng]);
+                });
+
+                if (bounds.length === 1) {
+                    map.setView(bounds[0], 15);
+                } else {
+                    map.fitBounds(bounds, {
+                        padding: [60, 60],
+                        maxZoom: 15
+                    });
+                }
+            }
+
+            wrapper.querySelectorAll("[data-map-tab]").forEach(function (tab) {
+                tab.addEventListener("click", function () {
+                    wrapper.querySelectorAll("[data-map-tab]").forEach(function (item) {
+                        item.classList.remove("is-active");
+                    });
+
+                    tab.classList.add("is-active");
+                    renderCategory(tab.dataset.mapTab);
+                });
+            });
+
+            const firstTab = wrapper.querySelector("[data-map-tab]");
+            if (firstTab) {
+                renderCategory(firstTab.dataset.mapTab);
+            }
+        });
+    });
+</script>
