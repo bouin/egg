@@ -57,7 +57,8 @@
     "typo3/cms-workspaces": "^13.4",
     "studio/site-package": "dev-main",
 
-    "mask/mask": "9.0.8"
+    "mask/mask": "9.0.8",
+    "in2code/powermail": "^13.1"
 
   },
 

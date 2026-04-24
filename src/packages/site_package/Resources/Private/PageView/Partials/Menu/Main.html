@@ -31,9 +31,8 @@
             </f:for>
         </f:then>
     </f:if>
-
-    <header class="border-b border-[var(--font-dark)]">
-        <div class="mx-auto flex max-w-screen-2xl items-center justify-between p-4 md:p-8 md:py-6">
+    <header class="{f:if(condition: '{page.id}==2',then:'border-b border-[var(--font-dark)]')} bg-[#F6F2EC]">
+        <div class="mx-auto flex items-center justify-between p-4 md:p-10 md:py-6 lg:p-12 lg:py-6">
             <a href="{f:uri.page(pageUid: 2)}" class="shrink-0">
                 <img
                         src="{f:uri.resource(path: 'Images/logo2.svg', extensionName: 'SitePackage')}"
@@ -53,6 +52,34 @@
                             <f:if condition='{item.current} || {item.active}'>text-stone-900 active</f:if>"
                             >
                             {item.title}
+                            </a>
+                        </li>
+                    </f:for>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <header id="sticky-header" class="fixed left-0 top-0 z-40 w-full translate-y-[-100%] bg-[#F6F2EC] backdrop-blur transition-transform duration-300">
+        <div class="mx-auto flex items-center justify-between p-4 md:p-10 md:py-2 md:pb-3 lg:p-12 lg:py-2">
+            <a href="{f:uri.page(pageUid: 2)}" class="shrink-0">
+                <img
+                        src="{f:uri.resource(path: 'Images/logo2.svg', extensionName: 'SitePackage')}"
+                        alt="Grünegg"
+                        class="h-auto w-[120px] md:w-[180px]"
+                />
+            </a>
+
+            <nav class="hidden md:block">
+                <ul class="flex items-center gap-16 lg:gap-20">
+                    <f:for each="{mainnavigation}" as="item">
+                        <li>
+                            <a
+                                    href="{item.link}"
+                                    target="{item.target}"
+                                    class="nav-link text-[20px] tracking-tight transition-colors
+                            <f:if condition='{item.current} || {item.active}'>text-stone-900 active</f:if>"
+                            >
+                                {item.title}
                             </a>
                         </li>
                     </f:for>
@@ -117,7 +144,7 @@
                     <span>E-Mail</span>
                     <span class="absolute bottom-0 left-0 h-px w-1/2 bg-[var(--font-dark)] transition-all duration-300 group-hover:w-full"></span>
                 </a> <br>
-                <a href="/kontakt#form" class="relative inline-block pb-1 group">
+                <a href="/kontakt#here-16" class="relative inline-block pb-1 group">
                     <span>Kontaktformular</span>
                     <span class="absolute bottom-0 left-0 h-px w-1/2 bg-[var(--font-dark)] transition-all duration-300 group-hover:w-full"></span>
                 </a>
@@ -148,5 +175,22 @@
 
     document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') closeDokPanel();
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var stickyHeader = document.getElementById('sticky-header');
+
+        function toggleStickyHeader() {
+            if (window.scrollY > 400) {
+                stickyHeader.classList.remove('translate-y-[-100%]');
+                stickyHeader.classList.add('translate-y-0');
+            } else {
+                stickyHeader.classList.add('translate-y-[-100%]');
+                stickyHeader.classList.remove('translate-y-0');
+            }
+        }
+
+        toggleStickyHeader();
+        window.addEventListener('scroll', toggleStickyHeader, { passive: true });
     });
 </script>

@@ -1,0 +1,105 @@
+<f:variable name="layoutChoose" value="{data.tx_mask_layout_choose}" />
+<f:variable name="bgColor" value="{data.tx_mask_color_of_the_lement}" />
+
+<section class="mask-text-color-bg w-100">
+    <div class="container-xxl py-5 px-4">
+
+        <f:switch expression="{layoutChoose}">
+
+            <f:case value="0">
+                <div class="row gy-5">
+                    <f:if condition="{data.header}">
+                        <div class="col-12 col-md-9">
+                            <h2 class="text-uppercase mask-headline">
+                                {data.header}
+                            </h2>
+                        </div>
+                    </f:if>
+
+                    <f:if condition="{data.tx_mask_text_text_on_colorful_background}">
+                        <div class="col-12 col-md-9 offset-md-2 col-lg-7">
+                            <div class="mask-text">
+                                {data.tx_mask_text_text_on_colorful_background -> f:transform.html()}
+                            </div>
+                        </div>
+                    </f:if>
+                </div>
+            </f:case>
+
+            <f:case value="1">
+                <div class="row gy-5 gx-md-5">
+                    <f:if condition="{data.header}">
+                        <div class="col-12 col-md-3">
+                            <h2 class="text-uppercase mask-headline">
+                                {data.header}
+                            </h2>
+                        </div>
+                    </f:if>
+
+                    <f:if condition="{data.tx_mask_text_text_on_colorful_background}">
+                        <div class="col-12 col-md-7 offset-md-2 col-lg-6 offset-lg-1">
+                            <div class="mask-text">
+                                {data.tx_mask_text_text_on_colorful_background -> f:transform.html()}
+                            </div>
+                        </div>
+                    </f:if>
+                </div>
+            </f:case>
+
+            <f:case value="3">
+                <div class="row gy-5 gx-md-5 align-items-start">
+                    <f:if condition="{data.tx_mask_text_text_on_colorful_background}">
+                        <div class="col-12 col-md-7 offset-md-1">
+                            <div class="mask-text">
+                                {data.tx_mask_text_text_on_colorful_background -> f:transform.html()}
+                            </div>
+                        </div>
+                    </f:if>
+
+                    <f:if condition="{data.tx_mask_link}">
+                        <div class="col-12 col-md-3 offset-md-1">
+                            <f:link.typolink
+                                    parameter="{data.tx_mask_link}"
+                                    class="mask-link">
+                                {data.tx_mask_text_to_link}
+                            </f:link.typolink>
+                        </div>
+                    </f:if>
+                </div>
+            </f:case>
+
+            <f:case value="4">
+                <div class="row">
+                    <f:if condition="{data.tx_mask_text_text_on_colorful_background}">
+                        <div class="col-12 col-md-8 offset-md-2">
+                            <div class="mask-text text-center">
+                                {data.tx_mask_text_text_on_colorful_background -> f:transform.html()}
+                            </div>
+                        </div>
+                    </f:if>
+                </div>
+            </f:case>
+
+            <f:defaultCase>
+                <div class="row gy-5">
+                    <f:if condition="{data.header}">
+                        <div class="col-12 col-md-8">
+                            <h2 class="text-uppercase mask-headline">
+                                {data.header}
+                            </h2>
+                        </div>
+                    </f:if>
+
+                    <f:if condition="{data.tx_mask_text_text_on_colorful_background}">
+                        <div class="col-12 col-md-8 offset-md-2 col-lg-7">
+                            <div class="mask-text">
+                                {data.tx_mask_text_text_on_colorful_background -> f:transform.html()}
+                            </div>
+                        </div>
+                    </f:if>
+                </div>
+            </f:defaultCase>
+
+        </f:switch>
+    </div>
+</section>

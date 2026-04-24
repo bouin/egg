@@ -83,10 +83,14 @@
                         "tx_mask_text_text_on_colorful_background",
                         "tx_mask_text_to_link",
                         "tx_mask_link",
-                        "tx_mask_layout_choose"
+                        "tx_mask_text_instead_of_button",
+                        "tx_mask_layout_choose",
+                        "tx_mask_bigger_text"
                     ],
                     "description": "",
                     "descriptions": [
+                        "",
+                        "",
                         "",
                         "",
                         "",
@@ -104,7 +108,9 @@
                         "Add text",
                         "Text to link",
                         "Link",
-                        "Choose layout"
+                        "Text on right side (if exists, link not shown)",
+                        "Choose layout",
+                        "Text bigger (+ uppercase)"
                     ],
                     "shortLabel": "",
                     "sorting": 2
@@ -118,6 +124,7 @@
                         "tx_mask_text_white_first_col",
                         "tx_mask_image_first_column",
                         "tx_mask_color_first_column",
+                        "tx_mask_content_second_column",
                         "tx_mask_text_second_column",
                         "tx_mask_text_white_second_column",
                         "tx_mask_image_second_column",
@@ -133,6 +140,7 @@
                         "",
                         "",
                         "",
+                        "",
                         ""
                     ],
                     "icon": "",
@@ -140,11 +148,12 @@
                     "key": "two_columns",
                     "label": "Two columns",
                     "labels": [
-                        "",
+                        "Height of the element",
                         "Text first column",
                         "Text white first column",
                         "Image first column",
                         "Color first column",
+                        "Add e-mail form",
                         "Text secondcolumn",
                         "Text white second column",
                         "Image second column",
@@ -160,6 +169,11 @@
                         "tx_mask_add_image": "int(11) unsigned DEFAULT '0' NOT NULL"
                     }
                 },
+                "tx_mask_bigger_text": {
+                    "tt_content": {
+                        "tx_mask_bigger_text": "int(11) DEFAULT '0' NOT NULL"
+                    }
+                },
                 "tx_mask_color_first_column": {
                     "tt_content": {
                         "tx_mask_color_first_column": "varchar(255) DEFAULT '' NOT NULL"
@@ -173,6 +187,11 @@
                 "tx_mask_color_second_column": {
                     "tt_content": {
                         "tx_mask_color_second_column": "varchar(255) DEFAULT '' NOT NULL"
+                    }
+                },
+                "tx_mask_content_second_column": {
+                    "tt_content": {
+                        "tx_mask_content_second_column": "int(11) unsigned DEFAULT '0' NOT NULL"
                     }
                 },
                 "tx_mask_copy_textus": {
@@ -250,6 +269,11 @@
                         "tx_mask_text_first_col": "mediumtext"
                     }
                 },
+                "tx_mask_text_instead_of_button": {
+                    "tt_content": {
+                        "tx_mask_text_instead_of_button": "mediumtext"
+                    }
+                },
                 "tx_mask_text_second_column": {
                     "tt_content": {
                         "tx_mask_text_second_column": "mediumtext"
@@ -310,6 +334,15 @@
                     "key": "add_image",
                     "type": "file"
                 },
+                "tx_mask_bigger_text": {
+                    "config": {
+                        "items": [],
+                        "type": "check"
+                    },
+                    "fullKey": "tx_mask_bigger_text",
+                    "key": "bigger_text",
+                    "type": "check"
+                },
                 "tx_mask_color_first_column": {
                     "config": {
                         "nullable": 0,
@@ -339,6 +372,44 @@
                     "fullKey": "tx_mask_color_second_column",
                     "key": "color_second_column",
                     "type": "colorpicker"
+                },
+                "tx_mask_content_second_column": {
+                    "cTypes": [
+                        "powermail_pi1"
+                    ],
+                    "config": {
+                        "appearance": {
+                            "enabledControls": {
+                                "delete": 1,
+                                "dragdrop": 1,
+                                "hide": 1,
+                                "info": 1,
+                                "localize": 1,
+                                "new": 1,
+                                "sort": 1
+                            },
+                            "levelLinksPosition": "top",
+                            "showAllLocalizationLink": 1,
+                            "showNewRecordLink": 1,
+                            "showPossibleLocalizationRecords": 1,
+                            "useSortable": 1
+                        },
+                        "foreign_sortby": "sorting",
+                        "foreign_table": "tt_content",
+                        "overrideChildTca": {
+                            "columns": {
+                                "colPos": {
+                                    "config": {
+                                        "default": 999
+                                    }
+                                }
+                            }
+                        },
+                        "type": "inline"
+                    },
+                    "fullKey": "tx_mask_content_second_column",
+                    "key": "content_second_column",
+                    "type": "content"
                 },
                 "tx_mask_copy_textus": {
                     "config": {
@@ -548,7 +619,7 @@
                                 "description": "",
                                 "group": "",
                                 "icon": "",
-                                "label": "Only copy text",
+                                "label": "Only copy text + button right",
                                 "value": "3"
                             },
                             {
@@ -632,6 +703,15 @@
                     },
                     "fullKey": "tx_mask_text_first_col",
                     "key": "text_first_col",
+                    "type": "richtext"
+                },
+                "tx_mask_text_instead_of_button": {
+                    "config": {
+                        "enableRichtext": 1,
+                        "type": "text"
+                    },
+                    "fullKey": "tx_mask_text_instead_of_button",
+                    "key": "text_instead_of_button",
                     "type": "richtext"
                 },
                 "tx_mask_text_second_column": {

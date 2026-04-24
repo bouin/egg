@@ -20,7 +20,8 @@ module.exports = {
         'text-white',
         'text-[#48433F]',
         'bg-[#48433F]',
-        'bg-[#F6F2EC]'
+        'bg-[#F6F2EC]',
+        'bg-[#D3D6D7]'
     ],
     theme: {
         extend: {},

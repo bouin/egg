@@ -1,0 +1,165 @@
+<f:variable name="imageOnTheRightSide" value="{data.tx_mask_image_on_the_right_side}" />
+<f:variable name="bgColor" value="{data.tx_mask_make_my_life_colorfull}" />
+<f:variable name="heightOfTheElement" value="{data.tx_mask_height_of_the_element}" />
+<f:variable name="designLayout" value="{data.tx_mask_design_layout}" />
+
+<f:switch expression="{heightOfTheElement}">
+    <f:case value="0">
+        <f:variable name="heightClass" value="min-h-280" />
+    </f:case>
+    <f:case value="1">
+        <f:variable name="heightClass" value="min-h-420" />
+    </f:case>
+    <f:case value="2">
+        <f:variable name="heightClass" value="min-h-560" />
+    </f:case>
+</f:switch>
+
+<f:variable name="imageFile" value="" />
+<f:for each="{data.tx_mask_add_image}" as="file" iteration="iterator">
+    <f:if condition="{iterator.isFirst}">
+        <f:variable name="imageFile" value="{file}" />
+    </f:if>
+</f:for>
+
+<section class="container-fluid py-4" <f:if condition="{bgColor}">style="background-color:{bgColor}"</f:if>>
+
+<f:switch expression="{designLayout}">
+
+    <!-- ========================================= -->
+    <!-- LAYOUT 0 – CLASSIC SPLIT -->
+    <!-- ========================================= -->
+    <f:case value="0">
+
+        <div class="row align-items-stretch {heightClass}">
+
+            <!-- IMAGE -->
+            <f:if condition="{imageOnTheRightSide}">
+                <f:then>
+                    <div class="col-md-6 order-md-2">
+                        <f:if condition="{imageFile}">
+                            <f:image image="{imageFile}" class="img-fluid w-100 h-100 object-fit-cover" />
+                        </f:if>
+                    </div>
+                </f:then>
+                <f:else>
+                    <div class="col-md-6">
+                        <f:if condition="{imageFile}">
+                            <f:image image="{imageFile}" class="img-fluid w-100 h-100 object-fit-cover" />
+                        </f:if>
+                    </div>
+                </f:else>
+            </f:if>
+
+            <!-- CONTENT -->
+            <div class="col-md-6 d-flex">
+                <div class="p-4 w-100 d-flex flex-column justify-content-between">
+
+                    <div>
+                        <f:if condition="{data.header}">
+                            <h2 class="h4 text-uppercase">{data.header}</h2>
+                        </f:if>
+
+                        <f:if condition="{data.tx_mask_copy_textus}">
+                            <div class="mt-3">
+                                {data.tx_mask_copy_textus -> f:transform.html()}
+                            </div>
+                        </f:if>
+                    </div>
+
+                    <div>
+                        <f:if condition="{data.tx_mask_small_contact_text_below_text}">
+                            <small class="d-block text-muted">
+                                {data.tx_mask_small_contact_text_below_text}
+                            </small>
+                        </f:if>
+
+                        <f:if condition="{data.tx_mask_smallink_below}">
+                            <f:link.typolink parameter="{data.tx_mask_smallink_below}" class="btn btn-link p-0">
+                                Zum Kontaktformular
+                            </f:link.typolink>
+                        </f:if>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </f:case>
+
+    <!-- ========================================= -->
+    <!-- LAYOUT 1 – IMAGE + TEXT SIDE -->
+    <!-- ========================================= -->
+    <f:case value="1">
+
+        <div class="row {heightClass}">
+
+            <div class="col-md-6">
+                <f:if condition="{imageFile}">
+                    <f:image image="{imageFile}" class="img-fluid w-100 h-100 object-fit-cover" />
+                </f:if>
+            </div>
+
+            <div class="col-md-6 d-flex">
+                <div class="p-4 d-flex flex-column justify-content-between w-100">
+
+                    <f:if condition="{data.tx_mask_copy_textus}">
+                        <div>
+                            {data.tx_mask_copy_textus -> f:transform.html()}
+                        </div>
+                    </f:if>
+
+                    <f:if condition="{data.tx_mask_extra_text_right_side}">
+                        <div class="text-muted small mt-3">
+                            {data.tx_mask_extra_text_right_side -> f:transform.html()}
+                        </div>
+                    </f:if>
+
+                </div>
+            </div>
+
+        </div>
+
+    </f:case>
+
+    <!-- ========================================= -->
+    <!-- LAYOUT 2 – HEADLINE + TEXT -->
+    <!-- ========================================= -->
+    <f:case value="2">
+
+        <div class="row {heightClass} align-items-center">
+
+            <f:if condition="{imageFile}">
+                <div class="col-md-6 {f:if(condition: imageOnTheRightSide, then: 'order-md-2')}">
+                    <f:image image="{imageFile}" class="img-fluid w-100 h-100 object-fit-cover" />
+                </div>
+            </f:if>
+
+            <div class="col-md-6">
+
+                <f:if condition="{data.header}">
+                    <h2 class="h4 text-uppercase">{data.header}</h2>
+                </f:if>
+
+                <f:if condition="{data.tx_mask_copy_textus}">
+                    <div class="mt-3">
+                        {data.tx_mask_copy_textus -> f:transform.html()}
+                    </div>
+                </f:if>
+
+                <f:if condition="{data.tx_mask_extra_text_right_side}">
+                    <div class="mt-3 small text-muted">
+                        {data.tx_mask_extra_text_right_side -> f:transform.html()}
+                    </div>
+                </f:if>
+
+            </div>
+
+        </div>
+
+    </f:case>
+
+</f:switch>
+
+</section>

@@ -32,13 +32,13 @@
 </f:if>
 <f:switch expression="{heightOfTheElement}">
     <f:case value="0">
-        <f:variable name="heightClass" value="min-h-[280px] md:min-h-[360px]" />
+        <f:variable name="heightClass" value="min-h-[480px] md:min-h-[480px]" />
     </f:case>
     <f:case value="1">
-        <f:variable name="heightClass" value="min-h-[420px] md:min-h-[520px]" />
+        <f:variable name="heightClass" value="min-h-[480px] md:min-h-[550px]" />
     </f:case>
     <f:case value="2">
-        <f:variable name="heightClass" value="min-h-[560px] md:min-h-[700px]" />
+        <f:variable name="heightClass" value="min-h-[560px] md:min-h-[800px]" />
     </f:case>
 </f:switch>
 
@@ -49,19 +49,15 @@
 <f:variable name="col1HasImages" value="{data.tx_mask_image_first_column -> f:count()}" />
 <f:variable name="col2HasImages" value="{data.tx_mask_image_second_column -> f:count()}" />
 <f:variable name="col1IsSlider"  value="{col1HasImages > 1}" />
+<f:variable name="col2IsSlider" value="{col2HasImages > 1}" />
 
 
-<section class="grid grid-cols-1 md:grid-cols-2 w-full text-block">
+<section class="grid grid-cols-1 md:grid-cols-2 w-full text-block" id="here-{data.uid}">
 
     <!-- ─────────────────────────────── COL 1 ─── -->
     <div class="relative overflow-hidden {heightClass}">
 
-        <!--
-          ══ COL 1: IMAGE / SLIDER MODE ══
-          Shown when image(s) are assigned.
-          If only 1 image → plain background image.
-          If >1 images    → Swiper auto-play, no dots.
-        -->
+        <!--══ COL 1: IMAGE / SLIDER MODE ══-->
         <f:if condition="{col1HasImages}">
             <f:then>
 
@@ -94,9 +90,9 @@
                 <!-- optional text overlay on top of image -->
                 <f:if condition="{data.tx_mask_text_first_col}">
                     <div class="absolute inset-0 flex items-center justify-center">
-                        <div class="px-10 py-8 max-w-xs">
+                        <div class="px-10 py-8">
                             <div class="{col1TextColorClass} uppercase">
-                                {data.tx_mask_text_first_col -> f:format.html()}
+                                {data.tx_mask_text_first_col -> f:transform.html()}
                             </div>
                         </div>
                     </div>
@@ -111,9 +107,9 @@
             <f:else>
                 <div class="absolute inset-0 flex items-center justify-center" style="background-color: {data.tx_mask_color_first_column};">
                     <f:if condition="{data.tx_mask_text_first_col}">
-                        <div class="px-10 py-8 max-w-xs">
+                        <div class="px-10 py-8">
                             <div class="{col1TextColorClass} text-center uppercase col1-text-content">
-                                {data.tx_mask_text_first_col -> f:format.html()}
+                                {data.tx_mask_text_first_col -> f:transform.html()}
                             </div>
                         </div>
                     </f:if>
@@ -122,54 +118,75 @@
         </f:if>
 
     </div>
-    <!-- ─────────────────────────────── /COL 1 ─── -->
-
-
-    <!-- ─────────────────────────────── COL 2 ─── -->
-    <div class="relative overflow-hidden {heightClass}">
-
-        <!--
-          ══ COL 2: IMAGE MODE ══
-        -->
-        <f:if condition="{col2HasImages}">
+    <!-- ─────────────────────────────── /COL 2 ─── -->
+    <div class="relative overflow-hidden {heightClass} second-col">
+        <!--══ COL 2: IMAGE MODE ══-->
+        <f:if condition="{data.tx_mask_content_second_column}">
             <f:then>
-                <f:for each="{data.tx_mask_image_second_column}" as="file" iteration="i">
-                    <f:if condition="{i.isFirst}">
-                        <div class="absolute inset-0 bg-cover bg-center"
-                             style="background-image: url('{f:uri.image(image: file)}')">
-                        </div>
-                    </f:if>
-                </f:for>
-
-                <!-- optional text overlay on top of image -->
-                <f:if condition="{data.tx_mask_text_second_column}">
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <div class="px-10 py-8 max-w-xs">
-                            <div class="{col2TextColorClass} text-center uppercase">
-                                {data.tx_mask_text_second_column -> f:format.html()}
-                            </div>
+                <div class="flex w-full flex-col justify-between px-6 md:px-10 lg:px-12 py-8 md:py-12 lg:py-16 relative" style="background-color: {data.tx_mask_color_second_column};">
+                    <div class="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-10 ">
+                        <div class="col-span-12">
+                            <f:for each="{data.tx_mask_content_second_column}" as="data_item">
+                                <f:cObject typoscriptObjectPath="lib.tx_mask.content">{data_item.uid}</f:cObject>
+                            </f:for>
                         </div>
                     </div>
-                </f:if>
-            </f:then>
-
-            <!--
-              ══ COL 2: TEXT / COLOR MODE ══
-            -->
-            <f:else>
-                <div class="absolute inset-0 flex items-center justify-center"
-                     style="background-color: {data.tx_mask_color_second_column};">
-                    <f:if condition="{data.tx_mask_text_second_column}">
-                        <div class="px-10 py-8 max-w-xs">
-                            <div class="{col2TextColorClass} uppercase text-center">
-                                {data.tx_mask_text_second_column -> f:format.html()}
-                            </div>
-                        </div>
-                    </f:if>
                 </div>
+            </f:then>
+            <f:else>
+                <f:if condition="{col2HasImages}">
+                    <f:then>
+                        <f:if condition="{col2HasImages}>1">
+                            <f:then>
+                                <div class="swiper col2-swiper absolute inset-0 w-full h-full">
+                                    <div class="swiper-wrapper h-full">
+                                        <f:for each="{data.tx_mask_image_second_column}" as="file">
+                                            <div class="swiper-slide bg-cover bg-center h-full"
+                                                 style="background-image: url('{f:uri.image(image: file)}')">
+                                            </div>
+                                        </f:for>
+                                    </div>
+                                </div>
+                            </f:then>
+                            <f:else>
+                                <f:for each="{data.tx_mask_image_second_column}" as="file" iteration="i">
+                                    <f:if condition="{i.isFirst}">
+                                        <div class="absolute inset-0 bg-cover bg-center"
+                                             style="background-image: url('{f:uri.image(image: file)}')">
+                                        </div>
+                                    </f:if>
+                                </f:for>
+                            </f:else>
+                        </f:if>
+
+                        <!-- optional text overlay on top of image -->
+                        <f:if condition="{data.tx_mask_text_second_column}">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="px-10 py-8 ">
+                                    <div class="{col2TextColorClass} text-center uppercase">
+                                        {data.tx_mask_text_second_column -> f:transform.html()}
+                                    </div>
+                                </div>
+                            </div>
+                        </f:if>
+                    </f:then>
+
+                    <!--══ COL 2: TEXT / COLOR MODE ══-->
+                    <f:else>
+                        <div class="absolute inset-0 flex items-center justify-center"
+                             style="background-color: {data.tx_mask_color_second_column};">
+                            <f:if condition="{data.tx_mask_text_second_column}">
+                                <div class="px-10 py-8">
+                                    <div class="{col2TextColorClass} uppercase text-center">
+                                        {data.tx_mask_text_second_column -> f:transform.html()}
+                                    </div>
+                                </div>
+                            </f:if>
+                        </div>
+                    </f:else>
+                </f:if>
             </f:else>
         </f:if>
-
     </div>
     <!-- ─────────────────────────────── /COL 2 ─── -->
 
@@ -198,4 +215,22 @@
     </script>
 </f:if>
 
-
+<f:if condition="{col2HasImages} > 1">
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            new Swiper('.col2-swiper', {
+                loop: true,
+                speed: 900,
+                autoplay: {
+                    delay: 3500,
+                    disableOnInteraction: false
+                },
+                effect: 'fade',
+                fadeEffect: {
+                    crossFade: true
+                }
+            });
+        });
+    </script>
+</f:if>

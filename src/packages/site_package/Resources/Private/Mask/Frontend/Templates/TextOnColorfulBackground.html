@@ -2,7 +2,7 @@
 <f:variable name="bgColor" value="{data.tx_mask_color_of_the_lement}" />
 
 <section class="w-full" style="background-color: {bgColor}">
-<div class="mx-auto max-w-screen-2xl px-6 py-14 md:px-10 md:py-20 lg:px-16">
+<div class="mx-auto max-w-screen-2xl px-4 py-14 md:px-10 md:py-20 lg:px-16">
 
     <f:switch expression="{layoutChoose}">
         <!-- Layout 1: headline wide (about 8 cols), then copy below -->
@@ -50,26 +50,49 @@
         <!-- Layout 3: copy left, link right -->
         <f:case value="3">
             <div class="grid grid-cols-12 gap-y-10 md:gap-x-8 items-start">
+
+                <f:if condition="{data.header}">
+                    <div class="col-span-12 md:col-span-4 !text-[27px] md:!text-[35px]">
+                        <h2 class="uppercase !text-[27px] md:!text-[35px]">
+                            {data.header}
+                        </h2>
+                    </div>
+                </f:if>
+            </div>
+            <div class="grid grid-cols-12 gap-y-10 md:gap-x-8 items-start {f:if(condition: '{data.header}',then:'mt-6 md:mt-12',else:'mt-3')}">
                 <f:if condition="{data.tx_mask_text_text_on_colorful_background}">
-                    <div class="col-span-12 md:col-span-7 md:col-start-2 lg:col-span-7">
+                    <div class="col-span-12 md:col-span-7 md:col-start-2 lg:col-span-7 {f:if(condition: '!{data.header}',then:'lg:col-start-2')}">
                         <div class="">
                             {data.tx_mask_text_text_on_colorful_background -> f:transform.html()}
                         </div>
                     </div>
                 </f:if>
 
-                <f:if condition="{data.tx_mask_link}">
-                    <div class="col-span-12 md:col-span-3 md:col-start-10">
-                        <div class="md:pt-2">
-                            <f:link.typolink
-                                    parameter="{data.tx_mask_link}"
-                                    class="relative inline-block pb-1 group">
-                                {data.tx_mask_text_to_link}
-                                <span class="absolute bottom-0 left-0 h-px w-1/2 bg-[var(--font-dark)] transition-all duration-300 group-hover:w-full"></span>
-                            </f:link.typolink>
+
+                <f:if condition="{data.tx_mask_text_instead_of_button}">
+                    <f:then>
+                        <div class="col-span-12 md:col-span-3 md:col-start-9">
+                            <div class="md:pt-2">
+                                {data.tx_mask_text_instead_of_button -> f:format.raw()}
+                            </div>
                         </div>
-                    </div>
+                    </f:then>
+                    <f:else>
+                        <f:if condition="{data.tx_mask_link}">
+                            <div class="col-span-12 md:col-span-3 md:col-start-10">
+                                <div class="md:pt-2">
+                                    <f:link.typolink
+                                            parameter="{data.tx_mask_link}"
+                                            class="relative inline-block pb-1 group">
+                                        {data.tx_mask_text_to_link}
+                                        <span class="absolute bottom-0 left-0 h-px w-1/2 bg-[var(--font-dark)] transition-all duration-300 group-hover:w-full"></span>
+                                    </f:link.typolink>
+                                </div>
+                            </div>
+                        </f:if>
+                    </f:else>
                 </f:if>
+
             </div>
         </f:case>
 
@@ -78,7 +101,7 @@
             <div class="grid grid-cols-12">
                 <f:if condition="{data.tx_mask_text_text_on_colorful_background}">
                     <div class="col-span-12 md:col-span-8 md:col-start-3 lg:col-span-8 lg:col-start-3">
-                        <div class="text-center text-lg leading-relaxed text-neutral-700 md:text-[1.75rem] md:leading-[1.25]">
+                        <div class="text-center {f:if(condition: '{data.tx_mask_bigger_text}',then:'text-lg leading-relaxed text-neutral-700 md:text-[1.75rem] md:leading-[1.25]')} ">
                             {data.tx_mask_text_text_on_colorful_background -> f:transform.html()}
                         </div>
                     </div>

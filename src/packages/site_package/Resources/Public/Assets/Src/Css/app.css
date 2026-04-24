@@ -13,6 +13,7 @@
 
 @layer base {
   html {
+    scroll-behavior: smooth;
     font-size: 20px;
     line-height: 1.2;
     letter-spacing: normal;
@@ -63,7 +64,7 @@
 .nav-link::after {
   content: '';
   position: absolute;
-  bottom: 2px;
+  bottom: -2px;
   left: 0;
   width: 0;
   height: 1px;
@@ -120,4 +121,178 @@
       font-size: 28px;
     }
   }
+}
+/*Powermail*/
+.tx-powermail {
+  width: 100%;
+}
+
+.tx-powermail .container-fluid {
+  padding: 0;
+}
+
+.tx-powermail .row {
+  display: block;
+  margin: 0;
+}
+
+.tx-powermail [class*="col-"] {
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
+}
+
+.tx-powermail .powermail_fieldwrap {
+  margin-bottom: 34px;
+}
+
+.tx-powermail .powermail_label {
+  display: block;
+  margin-bottom: 0px;
+  font-size: 20px;
+  line-height: 1.25;
+  font-weight: 400;
+  color: var(--font-dark);
+}
+
+.tx-powermail .mandatory {
+  margin-left: 1px;
+}
+
+.tx-powermail .form-control,
+.tx-powermail .powermail_input,
+.tx-powermail .powermail_textarea {
+  width: 100%;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid var(--font-dark);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  font-size: 20px;
+  line-height: 1.3;
+  color: var(--font-dark);
+}
+
+.tx-powermail .powermail_textarea {
+  resize: none;
+  overflow: hidden;
+  padding-top: 5px;
+}
+
+.tx-powermail .form-control:focus,
+.tx-powermail .powermail_input:focus,
+.tx-powermail .powermail_textarea:focus {
+  outline: none;
+  box-shadow: none;
+  border-bottom-color: var(--font-dark);
+}
+
+.tx-powermail .powermail_fieldwrap_type_submit {
+  margin-top: 54px;
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.tx-powermail .btn-primary {
+  position: relative;
+  display: inline-block;
+  padding: 0 0 4px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  font-size: 20px;
+  line-height: 1.25;
+  font-weight: 400;
+  color: var(--font-dark);
+  cursor: pointer;
+}
+
+.tx-powermail .btn-primary::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 50%;
+  height: 1px;
+  background: var(--font-dark);
+  transition: width 300ms ease;
+}
+
+.tx-powermail .btn-primary:hover::after,
+.tx-powermail .btn-primary:focus-visible::after {
+  width: 100%;
+}
+
+.tx-powermail .btn-primary:hover,
+.tx-powermail .btn-primary:focus,
+.tx-powermail .btn-primary:active {
+  background: transparent;
+  color: var(--font-dark);
+  box-shadow: none;
+}
+
+.tx-powermail .form-control:focus,
+.tx-powermail .powermail_input:focus,
+.tx-powermail .powermail_textarea:focus,
+.tx-powermail .form-control:active,
+.tx-powermail .powermail_input:active,
+.tx-powermail .powermail_textarea:active
+{
+  border-bottom: 1px solid #D03A05;
+}
+.tx-powermail .form-control,
+.tx-powermail .powermail_input,
+.tx-powermail .powermail_textarea {
+  color: #D03A05;
+  padding-bottom: 5px;
+}
+.tx-powermail .powermail-errors-list li {
+  width: 100%;
+  height: unset;
+  font-size: 14px;
+  line-height: 1.3;
+  margin-top: 7px;
+  color: #dc2403 !important;
+}
+.tx-powermail .btn-primary {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 4px;
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  color: var(--font-dark);
+  cursor: pointer;
+}
+
+.tx-powermail .powermail_fieldwrap_type_submit .powermail_field {
+  display: inline-block;
+  position: relative;
+}
+
+.tx-powermail .powermail_fieldwrap_type_submit .powermail_field::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 50%;
+  height: 1px;
+  background: var(--font-dark);
+  transition: width 300ms ease;
+}
+
+.tx-powermail .powermail_fieldwrap_type_submit .powermail_field:hover::after {
+  width: 100%;
+}
+
+.tx-powermail .btn-primary {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  font-size: 20px;
+  color: var(--font-dark);
+  cursor: pointer;
 }
