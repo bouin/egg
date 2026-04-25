@@ -27,6 +27,29 @@
                     "shortLabel": "",
                     "sorting": 5
                 },
+                "apartments": {
+                    "color": "#000000",
+                    "colorOverlay": "#000000",
+                    "columns": [
+                        "header",
+                        "tx_mask_apartments"
+                    ],
+                    "description": "",
+                    "descriptions": [
+                        "",
+                        ""
+                    ],
+                    "icon": "",
+                    "iconOverlay": "",
+                    "key": "apartments",
+                    "label": "apartments",
+                    "labels": [
+                        "",
+                        "Add apartment"
+                    ],
+                    "shortLabel": "",
+                    "sorting": 6
+                },
                 "info_contact_two_columns": {
                     "color": "#000000",
                     "colorOverlay": "#000000",
@@ -221,6 +244,11 @@
                 "tx_mask_add_image": {
                     "tt_content": {
                         "tx_mask_add_image": "int(11) unsigned DEFAULT '0' NOT NULL"
+                    }
+                },
+                "tx_mask_apartments": {
+                    "tt_content": {
+                        "tx_mask_apartments": "int(11) unsigned DEFAULT '0' NOT NULL"
                     }
                 },
                 "tx_mask_bigger_text": {
@@ -425,6 +453,34 @@
                     "imageoverlayPalette": 1,
                     "key": "add_image",
                     "type": "file"
+                },
+                "tx_mask_apartments": {
+                    "config": {
+                        "appearance": {
+                            "enabledControls": {
+                                "delete": 1,
+                                "dragdrop": 1,
+                                "hide": 1,
+                                "info": 1,
+                                "localize": 1,
+                                "new": 1,
+                                "sort": 1
+                            },
+                            "levelLinksPosition": "top",
+                            "showAllLocalizationLink": 1,
+                            "showNewRecordLink": 1,
+                            "showPossibleLocalizationRecords": 1,
+                            "useSortable": 1
+                        },
+                        "foreign_field": "parentid",
+                        "foreign_sortby": "sorting",
+                        "foreign_table": "--inlinetable--",
+                        "foreign_table_field": "parenttable",
+                        "type": "inline"
+                    },
+                    "fullKey": "tx_mask_apartments",
+                    "key": "apartments",
+                    "type": "inline"
                 },
                 "tx_mask_bigger_text": {
                     "config": {
@@ -955,6 +1011,189 @@
                     "key": "title_of_the_immo",
                     "label": "Title",
                     "order": 1,
+                    "type": "string"
+                }
+            }
+        },
+        "tx_mask_apartments": {
+            "sql": {
+                "tx_mask_area": {
+                    "tx_mask_apartments": {
+                        "tx_mask_area": "varchar(255) DEFAULT '' NOT NULL"
+                    }
+                },
+                "tx_mask_floor": {
+                    "tx_mask_apartments": {
+                        "tx_mask_floor": "varchar(255) DEFAULT '' NOT NULL"
+                    }
+                },
+                "tx_mask_number": {
+                    "tx_mask_apartments": {
+                        "tx_mask_number": "varchar(255) DEFAULT '' NOT NULL"
+                    }
+                },
+                "tx_mask_outside_area": {
+                    "tx_mask_apartments": {
+                        "tx_mask_outside_area": "varchar(255) DEFAULT '' NOT NULL"
+                    }
+                },
+                "tx_mask_pdf": {
+                    "tx_mask_apartments": {
+                        "tx_mask_pdf": "int(11) unsigned DEFAULT '0' NOT NULL"
+                    }
+                },
+                "tx_mask_rooms": {
+                    "tx_mask_apartments": {
+                        "tx_mask_rooms": "varchar(255) DEFAULT '' NOT NULL"
+                    }
+                },
+                "tx_mask_status": {
+                    "tx_mask_apartments": {
+                        "tx_mask_status": "varchar(255) DEFAULT '' NOT NULL"
+                    }
+                },
+                "tx_mask_unit_key": {
+                    "tx_mask_apartments": {
+                        "tx_mask_unit_key": "varchar(255) DEFAULT '' NOT NULL"
+                    }
+                }
+            },
+            "tca": {
+                "tx_mask_area": {
+                    "config": {
+                        "nullable": 0,
+                        "type": "input"
+                    },
+                    "fullKey": "tx_mask_area",
+                    "inlineParent": "tx_mask_apartments",
+                    "key": "area",
+                    "label": "Area",
+                    "order": 4,
+                    "type": "string"
+                },
+                "tx_mask_floor": {
+                    "config": {
+                        "nullable": 0,
+                        "type": "input"
+                    },
+                    "fullKey": "tx_mask_floor",
+                    "inlineParent": "tx_mask_apartments",
+                    "key": "floor",
+                    "label": "Floor",
+                    "order": 2,
+                    "type": "string"
+                },
+                "tx_mask_number": {
+                    "config": {
+                        "nullable": 0,
+                        "type": "input"
+                    },
+                    "fullKey": "tx_mask_number",
+                    "inlineParent": "tx_mask_apartments",
+                    "key": "number",
+                    "label": "Number",
+                    "order": 1,
+                    "type": "string"
+                },
+                "tx_mask_outside_area": {
+                    "config": {
+                        "nullable": 0,
+                        "type": "input"
+                    },
+                    "fullKey": "tx_mask_outside_area",
+                    "inlineParent": "tx_mask_apartments",
+                    "key": "outside_area",
+                    "label": "Outside area",
+                    "order": 5,
+                    "type": "string"
+                },
+                "tx_mask_pdf": {
+                    "config": {
+                        "appearance": {
+                            "elementBrowserEnabled": 1,
+                            "enabledControls": {
+                                "delete": 1,
+                                "dragdrop": 1,
+                                "hide": 1,
+                                "info": 1,
+                                "localize": 1,
+                                "sort": 0
+                            },
+                            "fileUploadAllowed": 1,
+                            "useSortable": 1
+                        },
+                        "minitems": ""
+                    },
+                    "fullKey": "tx_mask_pdf",
+                    "imageoverlayPalette": 1,
+                    "inlineParent": "tx_mask_apartments",
+                    "key": "pdf",
+                    "label": "Pdf",
+                    "order": 7,
+                    "type": "file"
+                },
+                "tx_mask_rooms": {
+                    "config": {
+                        "nullable": 0,
+                        "type": "input"
+                    },
+                    "fullKey": "tx_mask_rooms",
+                    "inlineParent": "tx_mask_apartments",
+                    "key": "rooms",
+                    "label": "Rooms",
+                    "order": 3,
+                    "type": "string"
+                },
+                "tx_mask_status": {
+                    "config": {
+                        "fieldWizard": {
+                            "selectIcons": {
+                                "disabled": 1
+                            }
+                        },
+                        "items": [
+                            {
+                                "description": "",
+                                "group": "",
+                                "icon": "",
+                                "label": "Free",
+                                "value": "0"
+                            },
+                            {
+                                "description": "",
+                                "group": "",
+                                "icon": "",
+                                "label": "Reserved",
+                                "value": "1"
+                            },
+                            {
+                                "description": "",
+                                "group": "",
+                                "icon": "",
+                                "label": "Sold",
+                                "value": "2"
+                            }
+                        ],
+                        "renderType": "selectSingle",
+                        "type": "select"
+                    },
+                    "fullKey": "tx_mask_status",
+                    "inlineParent": "tx_mask_apartments",
+                    "key": "status",
+                    "label": "Status",
+                    "order": 6,
+                    "type": "select"
+                },
+                "tx_mask_unit_key": {
+                    "config": {
+                        "nullable": 0,
+                        "type": "input"
+                    },
+                    "fullKey": "tx_mask_unit_key",
+                    "inlineParent": "tx_mask_apartments",
+                    "key": "unit_key",
+                    "label": "Unique key",
+                    "order": 8,
                     "type": "string"
                 }
             }
