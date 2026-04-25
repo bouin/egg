@@ -1,0 +1,45 @@
+<f:if condition="{data.header}">
+    {data.header}
+</f:if>
+<f:if condition="{data.tx_mask_apartments}">
+    <ul>
+        <f:for each="{data.tx_mask_apartments}" as="data_item">
+            <li>
+                <f:if condition="{data_item.tx_mask_number}">
+                    {data_item.tx_mask_number}
+                </f:if>
+                <f:if condition="{data_item.tx_mask_floor}">
+                    {data_item.tx_mask_floor}
+                </f:if>
+                <f:if condition="{data_item.tx_mask_rooms}">
+                    {data_item.tx_mask_rooms}
+                </f:if>
+                <f:if condition="{data_item.tx_mask_area}">
+                    {data_item.tx_mask_area}
+                </f:if>
+                <f:if condition="{data_item.tx_mask_outside_area}">
+                    {data_item.tx_mask_outside_area}
+                </f:if>
+                <f:variable name="status" value="{data_item.tx_mask_status}"/>
+                <f:switch expression="{status}">
+                    <f:case value="0">
+                        {status}
+                    </f:case>
+                    <f:case value="1">
+                        {status}
+                    </f:case>
+                    <f:case value="2">
+                        {status}
+                    </f:case>
+                </f:switch>
+                <f:for each="{data_item.tx_mask_pdf}" as="file">
+                    <f:image image="{file}" width="200" />
+                    {file.description}
+                </f:for>
+                <f:if condition="{data_item.tx_mask_unit_key}">
+                    {data_item.tx_mask_unit_key}
+                </f:if>
+            </li>
+        </f:for>
+    </ul>
+</f:if>
