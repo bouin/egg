@@ -48,8 +48,8 @@
 
 <f:variable name="col1HasImages" value="{data.tx_mask_image_first_column -> f:count()}" />
 <f:variable name="col2HasImages" value="{data.tx_mask_image_second_column -> f:count()}" />
-<f:variable name="col1IsSlider"  value="{col1HasImages > 1}" />
-<f:variable name="col2IsSlider" value="{col2HasImages > 1}" />
+<f:variable name="col1IsSlider"  value="{col1HasImages}" />
+<f:variable name="col2IsSlider" value="{col2HasImages}" />
 
 
 <section class="grid grid-cols-1 md:grid-cols-2 w-full text-block" id="here-{data.uid}">
@@ -62,7 +62,7 @@
             <f:then>
 
                 <!-- single image (no slider overhead) -->
-                <f:if condition="{col1IsSlider}">
+                <f:if condition="{col1IsSlider} > 1">
                     <f:else>
                         <f:for each="{data.tx_mask_image_first_column}" as="file" iteration="i">
                             <f:if condition="{i.isFirst}">
@@ -75,16 +75,18 @@
                 </f:if>
 
                 <!-- auto-play slider (>1 images) -->
-                <f:if condition="{col1IsSlider}">
+                <f:if condition="{col1IsSlider} > 1">
                     <div class="swiper col1-swiper absolute inset-0 w-full h-full">
                         <div class="swiper-wrapper h-full">
                             <f:for each="{data.tx_mask_image_first_column}" as="file">
                                 <div class="swiper-slide bg-cover bg-center h-full"
-                                     style="background-image: url('{f:uri.image(image: file)}')">
+                                     style="background-image: url('{f:uri.image(image: file, width: 1200c,height:800c)}')">
                                 </div>
                             </f:for>
                         </div>
+                        <div class="swiper-pagination"></div>
                     </div>
+
                 </f:if>
 
                 <!-- optional text overlay on top of image -->
@@ -108,7 +110,7 @@
                 <div class="absolute inset-0 flex items-center justify-center" style="background-color: {data.tx_mask_color_first_column};">
                     <f:if condition="{data.tx_mask_text_first_col}">
                         <div class="px-10 py-8">
-                            <div class="{col1TextColorClass} text-center uppercase col1-text-content">
+                            <div class="{col1TextColorClass} {f:if(condition: '{data.tx_mask_textlinkus}',then:'',else:'text-center')}  uppercase col1-text-content">
                                 {data.tx_mask_text_first_col -> f:transform.html()}
                             </div>
                         </div>
@@ -129,6 +131,9 @@
                             <f:for each="{data.tx_mask_content_second_column}" as="data_item">
                                 <f:cObject typoscriptObjectPath="lib.tx_mask.content">{data_item.uid}</f:cObject>
                             </f:for>
+                            <div style="font-size: 12px; color: black;width: 100%;padding-top: 10px" class="disable-me{data.uid}">
+                                Bitte alle erforderlichen Felder ausfüllen.*
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -138,14 +143,14 @@
                     <f:then>
                         <f:if condition="{col2HasImages}>1">
                             <f:then>
-                                <div class="swiper col2-swiper absolute inset-0 w-full h-full">
+                                <div class="swiper col2-swiper yeshere absolute inset-0 w-full h-full">
                                     <div class="swiper-wrapper h-full">
                                         <f:for each="{data.tx_mask_image_second_column}" as="file">
-                                            <div class="swiper-slide bg-cover bg-center h-full"
-                                                 style="background-image: url('{f:uri.image(image: file)}')">
+                                            <div class="swiper-slide bg-cover bg-center h-full" style="background-image: url('{f:uri.image(image: file, maxWidth: 1200, maxHeight: 800)}')">
                                             </div>
                                         </f:for>
                                     </div>
+                                    <div class="swiper-pagination"></div>
                                 </div>
                             </f:then>
                             <f:else>
@@ -177,7 +182,7 @@
                              style="background-color: {data.tx_mask_color_second_column};">
                             <f:if condition="{data.tx_mask_text_second_column}">
                                 <div class="px-10 py-8">
-                                    <div class="{col2TextColorClass} uppercase text-center">
+                                    <div class="{col2TextColorClass} uppercase {f:if(condition: '{data.tx_mask_textlinkusok}',then:'',else:'text-center')}">
                                         {data.tx_mask_text_second_column -> f:transform.html()}
                                     </div>
                                 </div>
@@ -194,43 +199,29 @@
 
 
 
-<f:if condition="{col1IsSlider}">
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            new Swiper('.col1-swiper', {
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.col1-swiper, .col2-swiper').forEach(function (el) {
+            if (el.swiper) {
+                return;
+            }
+
+            new Swiper(el, {
                 loop: true,
                 speed: 900,
                 autoplay: {
                     delay: 3500,
                     disableOnInteraction: false,
                 },
-                // no pagination, no arrows — matches the design spec
-                effect: 'fade',          // change to 'slide' for a slide transition
+                effect: 'fade',
                 fadeEffect: {
                     crossFade: true,
                 },
-            });
-        });
-    </script>
-</f:if>
-
-<f:if condition="{col2HasImages} > 1">
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            new Swiper('.col2-swiper', {
-                loop: true,
-                speed: 900,
-                autoplay: {
-                    delay: 3500,
-                    disableOnInteraction: false
+                pagination: {
+                    el: el.querySelector('.swiper-pagination'),
+                    clickable: true,
                 },
-                effect: 'fade',
-                fadeEffect: {
-                    crossFade: true
-                }
             });
         });
-    </script>
-</f:if>
+    });
+</script>

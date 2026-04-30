@@ -101,3 +101,46 @@
         </div>
     </div>
 </footer>
+
+<!-- Popup -->
+<div class="apartment-modal fixed inset-0 z-[99999] hidden overflow-y-auto bg-black/30 px-6 py-10 items-start justify-center">
+
+    <div class="relative grid w-full max-w-6xl grid-cols-1 overflow-hidden bg-[#D3D6D7] lg:grid-cols-2">
+
+        <!-- Image placeholder -->
+        <div class="hidden min-h-[620px] bg-[#c7cdc3] lg:block relative">
+            <div
+                    class="h-full w-full bg-cover bg-center"
+                    style="background-image: url('{f:uri.image(src:'EXT:site_package/Resources/Public/Images/waser.jpg')}');"
+            ></div>
+        </div>
+        <!-- TEXT -->
+        <div class="hidden lg:flex absolute z-10 flex h-full items-end p-6">
+            <div class="text-white text-[19px]">
+                <div>Dominique Andreas Waser</div>
+                <div>Inhaber und Geschäftsführer Adowia</div>
+            </div>
+        </div>
+
+        <!-- Form placeholder -->
+        <div class="relative p-4 lg:p-8 pt-6 lg:pt-14">
+            <button
+                    type="button"
+                    class="apartment-modal-close absolute right-4 top-2 text-4xl font-light w-100 pb-3"
+                    aria-label="Close"
+            >
+                ×
+            </button>
+
+            <div class="powermail-form">
+                <f:cObject
+                        typoscriptObjectPath="lib.renderAnyRecord"
+                        data="{uid: 35}"
+                />
+            </div>
+            <div style="font-size: 12px; color: black;width: 100%;padding-top: 10px">
+                Bitte alle erforderlichen Felder ausfüllen.*
+            </div>
+        </div>
+    </div>
+</div>

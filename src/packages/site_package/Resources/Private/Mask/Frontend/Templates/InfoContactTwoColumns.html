@@ -11,7 +11,7 @@
         <f:variable name="heightClass" value="min-h-[420px] md:min-h-[520px]" />
     </f:case>
     <f:case value="2">
-        <f:variable name="heightClass" value="min-h-[560px] md:min-h-[900px]" />
+        <f:variable name="heightClass" value="min-h-[700px] md:min-h-[900px]" />
     </f:case>
     <f:defaultCase>
         <f:variable name="heightClass" value="min-h-[420px] md:min-h-[520px]" />
@@ -55,7 +55,7 @@
                             <!-- Content -->
                             <div class="order-2 md:order-1 md:col-span-6 lg:col-span-6 {heightClass} flex ">
                                 <div class="flex w-full flex-col justify-between p-4 md:p-10 lg:p-12">
-                                    <div class="grid grid-cols-1 gap-4 lg:grid-cols-12 lg:gap-10">
+                                    <div class="grid grid-cols-1 gap-2 lg:grid-cols-12 lg:gap-2">
 
                                         <div class="{f:if(condition: hasRightColumn, then: 'lg:col-span-8', else: 'lg:col-span-12')}">
                                             <f:if condition="{data.header}">
@@ -139,11 +139,11 @@
                             <div class="order-2 md:col-span-6 lg:col-span-5 {heightClass}">
 
                                 <div class="flex w-full flex-col justify-between p-4 md:p-10 lg:p-12">
-                                    <div class="grid grid-cols-1 gap-4 lg:grid-cols-12 lg:gap-10">
+                                    <div class="grid grid-cols-1 gap-2 lg:grid-cols-12 lg:gap-4">
 
                                         <div class="{f:if(condition: hasRightColumn, then: 'col-span-12', else: 'col-span-12')}">
                                             <f:if condition="{data.header}">
-                                                <h2 class="max-w-[26vw] text-[27px] uppercase md:text-[27px] {headlineClass}">
+                                                <h2 class="max-w-[73vw] md:max-w-[26vw] text-[27px] uppercase md:text-[27px] {headlineClass}">
                                                     {data.header}
                                                 </h2>
                                             </f:if>
@@ -212,7 +212,7 @@
                     </div>
                     <div class="order-2 md:order-1 md:col-span-6 lg:col-span-6 {heightClass} flex">
                         <div class="flex w-full flex-col justify-between p-4 md:p-10 lg:p-12 relative">
-                            <div class="grid grid-cols-1 gap-4 lg:grid-cols-12 lg:gap-10 ">
+                            <div class="grid grid-cols-1 gap-2 lg:grid-cols-12 lg:gap-4 ">
 
                                 <div class="{f:if(condition: hasRightColumn, then: 'col-span-12', else: 'col-span-12')}">
 
@@ -252,7 +252,7 @@
                                 </div>
 
                                 <f:if condition="{data.tx_mask_smallink_below}">
-                                    <div class="col-span-12 lg:flex lg:flex-col md:absolute bottom-44 left-10">
+                                    <div class="col-span-12 lg:flex lg:flex-col bottom-44 left-10">
                                         <span>
                                             <f:link.typolink
                                                     parameter="{data.tx_mask_smallink_below}"
@@ -291,7 +291,7 @@
                     </div>
                     <div class="{f:if(condition: '{data.tx_mask_image_on_the_right_side}',then:'order-2 md:order-1',else:'order-1 md:order-2')} md:col-span-6 lg:col-span-6 {heightClass} flex">
                         <div class="flex w-full flex-col justify-between p-4 md:p-10 lg:p-12 relative">
-                            <div class="grid grid-cols-1 gap-4 lg:grid-cols-12 lg:gap-10 ">
+                            <div class="grid grid-cols-1 gap-2 lg:grid-cols-12 lg:gap-4">
                                 <f:if condition="{data.header}">
                                     <div class="col-span-12 lg:col-span-5">
                                         <h2 class="text-[27px] uppercase md:text-[27px] {headlineClass}">
@@ -336,7 +336,7 @@
                                 </div>
 
                                 <f:if condition="{data.tx_mask_smallink_below}">
-                                    <div class="col-span-12 lg:flex lg:flex-col md:absolute bottom-44 left-10">
+                                    <div class="col-span-12 lg:flex lg:flex-col bottom-44 left-10">
                                         <span>
                                             <f:link.typolink
                                                     parameter="{data.tx_mask_smallink_below}"

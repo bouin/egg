@@ -11,7 +11,7 @@
                 <f:if condition="{data.header}">
                     <div class="col-span-12 md:col-span-9 !text-[27px]">
                         <h2 class="uppercase !text-[27px]">
-                            {data.header}
+                            {data.header -> f:transform.html()}
                         </h2>
                     </div>
                 </f:if>

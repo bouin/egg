@@ -1,18 +1,20 @@
+
+
 <f:if condition="{data.tx_mask_accordion_with_data}">
-    <div class="w-full border-t border-[#5a554f] akkordeon">
+    <div class="w-full border-[#5a554f] akkordeon">
         <f:for each="{data.tx_mask_accordion_with_data}" as="data_item" iteration="iterator">
-            <details class="group {f:if(condition: '{iterator.isFirst}', then: '', else: 'border-t border-[#5a554f]')} {f:if(condition: '{iterator.isLast}', then: 'border-b border-[#5a554f]')}">
-                <summary class="relative cursor-pointer list-none py-8 uppercase text-[#46433f] px-8 md:px-12 marker:hidden">
-                    <span class="block w-full text-left !text-left inline-block">
+            <details class="group {f:if(condition: '{iterator.isFirst}==1', then: '', else: 'border-t border-[#5a554f]')} {f:if(condition: '{iterator.isLast}', then: 'border-b border-[#5a554f]')}">
+                <summary class="relative cursor-pointer list-none py-10 px-8 md:px-12 md:py-8 uppercase text-[#46433f] marker:hidden flex items-center justify-end text-right">
+
+                    <span class="pr-12 tracking-wide">
                         <f:if condition="{data_item.tx_mask_title_of_the_immo}">
                             {data_item.tx_mask_title_of_the_immo}
                         </f:if>
                     </span>
-                    <span class="absolute right-12 top-1/2 -translate-y-1/2 group-open:hidden">
+                    <span class="absolute right-12 plus -translate-y-1/2 text-2xl group-open:hidden">
                         +
                     </span>
-
-                    <span class="absolute right-12 top-1/2 -translate-y-1/2 hidden group-open:block">
+                    <span class="absolute right-12 plus -translate-y-1/2 text-2xl hidden group-open:block">
                         −
                     </span>
                 </summary>
@@ -27,6 +29,14 @@
             </details>
         </f:for>
     </div>
+    <div class="w-full pt-40 md:pt-24 text-[20px] text-center pb-24 md:pb-0">
+        <f:link.page pageUid="3" class="relative inline-block pb-1 group text-[20px]">
+            Wohnwelt entdecken
+            <span class="absolute bottom-0 left-0 h-px w-1/2 bg-[var(--font-dark)] transition-all duration-300 group-hover:w-full"></span>
+        </f:link.page>
+    </div>
+
+
 </f:if>
 <script>
     document.addEventListener('DOMContentLoaded', function () {

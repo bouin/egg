@@ -48,12 +48,12 @@
 
 ::selection {
   background: #B9A99A;
-  color: #BA3605;
+  color: #4b1830;
 }
 
 ::-moz-selection {
   background: #B9A99A;
-  color: #BA3605;
+  color: #4b1830;
 }
 
 .nav-link {
@@ -143,7 +143,7 @@
 }
 
 .tx-powermail .powermail_fieldwrap {
-  margin-bottom: 34px;
+  margin-bottom: 14px;
 }
 
 .tx-powermail .powermail_label {
@@ -177,7 +177,7 @@
 .tx-powermail .powermail_textarea {
   resize: none;
   overflow: hidden;
-  padding-top: 5px;
+  padding-top: 12px;
 }
 
 .tx-powermail .form-control:focus,
@@ -189,8 +189,8 @@
 }
 
 .tx-powermail .powermail_fieldwrap_type_submit {
-  margin-top: 54px;
-  margin-bottom: 0;
+  margin-top: 44px;
+  margin-bottom: 35px;
   text-align: center;
 }
 
@@ -240,12 +240,12 @@
 .tx-powermail .powermail_input:active,
 .tx-powermail .powermail_textarea:active
 {
-  border-bottom: 1px solid #D03A05;
+  border-bottom: 1px solid var(--font-dark);
 }
 .tx-powermail .form-control,
 .tx-powermail .powermail_input,
 .tx-powermail .powermail_textarea {
-  color: #D03A05;
+  color: var(--font-dark);
   padding-bottom: 5px;
 }
 .tx-powermail .powermail-errors-list li {
@@ -326,7 +326,7 @@
 }
 
 .location-map__tab:hover {
-  background: #d8ddd4;
+  background: #d8ddd4
 }
 
 .location-map__body {
@@ -518,4 +518,52 @@ details[open] .akkordeon-content {
 .apartment-link:hover::after,
 .apartment-link:focus-visible::after {
   width: 100%;
+}
+.plus{
+  top:47%
+}
+
+table th {
+  font-size: 18px;
+}
+table * {
+  font-size: 18px;
+}
+.no-scroll {
+  overflow: hidden;
+}
+.powermail_fieldset label {
+  padding-bottom: 10px}
+.leaflet-popup {
+  bottom: 27px !important;
+}
+.swiper-pagination-bullet-active {
+  background:  beige !important;
+}
+.disable-me30 {
+  display: none;
+}
+p {
+  line-height: 1.2;
+}
+.apartment-module__scroll {
+  overflow-y: auto;
+}
+.apartment-module__scroll {
+  overflow-y: auto;
+  min-height: 600px;
+  max-height: 600px;
+
+  @media (min-width: 1400px) {
+    min-height: 700px;
+    max-height: 700px;
+  }
+
+  @media (min-width: 1800px) {
+    min-height: 800px;
+    max-height: 800px;
+  }
+}
+tr, td, th {
+  line-height: 1 !important;
 }

@@ -3,12 +3,12 @@
         <f:then>
             <f:for each="{media}" as="image" iteration="iterator">
                 <f:if condition="{iterator.isFirst}">
-                    <section class="relative h-[100svh] min-h-[64vh] overflow-hidden bg-black">
+                    <section class="relative h-[80svh] max-h-[80vh] md:h-[100svh] md:max-h-[100vh] min-h-[64vh] overflow-hidden bg-black">
 
                         <f:image
                                 image="{image}"
                                 alt="{image.alternative -> f:if(then: image.alternative, else: 'Grünegg')}"
-                                class="absolute inset-0 h-full w-full object-cover"
+                                class="absolute inset-0 h-full w-full object-cover object-right md:object-center"
                                 loading="eager"
                                 width="2000c"
                                 height="1200c"

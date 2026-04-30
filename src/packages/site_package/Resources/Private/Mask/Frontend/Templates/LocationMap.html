@@ -46,6 +46,16 @@
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll(".location-map").forEach(function (wrapper) {
+            const INVESTMENT = {
+                lat: 46.88551917886284,
+                lng: 7.6251368340840004
+            };
+            const investmentIcon = L.icon({
+                iconUrl: '/fileadmin/pin.svg',
+                iconSize: [40, 40],
+                iconAnchor: [20, 40]
+            });
+
             const mapId = wrapper.dataset.mapId;
             const mapElement = document.getElementById(mapId);
             const dataElement = document.getElementById("map-data-" + mapId.replace("map-", ""));
@@ -75,6 +85,20 @@
             L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
                 attribution: "&copy; OpenStreetMap"
             }).addTo(map);
+
+            const investmentMarker = L.marker(
+                [INVESTMENT.lat, INVESTMENT.lng],
+                { icon: investmentIcon }
+            ).addTo(map);
+
+            investmentMarker.bindPopup(`
+                <div>
+                    <strong>Grünegg Konolfingen</strong><br>
+                    Brunnhaldenstrasse 40–56<br>
+                    3510 Konolfingen <br>
+                    <a href="https://maps.app.goo.gl/agP6ANahftSGurgb6" target="_blank">Google Maps</a>
+                </div>
+            `);
 
             const markers = [];
 
@@ -109,7 +133,7 @@
 
                 if (!filteredPlaces.length) return;
 
-                const bounds = [];
+                const bounds = [[INVESTMENT.lat, INVESTMENT.lng]];
 
                 filteredPlaces.forEach(function (place, index) {
                     const numberIcon = L.divIcon({
