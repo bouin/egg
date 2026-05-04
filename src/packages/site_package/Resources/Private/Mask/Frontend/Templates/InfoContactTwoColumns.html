@@ -55,7 +55,7 @@
                             <!-- Content -->
                             <div class="order-2 md:order-1 md:col-span-6 lg:col-span-6 {heightClass} flex ">
                                 <div class="flex w-full flex-col justify-between p-4 md:p-10 lg:p-12">
-                                    <div class="grid grid-cols-1 gap-2 lg:grid-cols-12 lg:gap-2">
+                                    <div class="grid grid-cols-12 gap-2 lg:grid-cols-12 lg:gap-2">
 
                                         <div class="{f:if(condition: hasRightColumn, then: 'lg:col-span-8', else: 'lg:col-span-12')}">
                                             <f:if condition="{data.header}">
@@ -119,11 +119,11 @@
                     </f:then>
 
                     <f:else>
-                        <div class="grid grid-cols-1 overflow-hidden md:grid-cols-12">
+                        <div class="grid grid-cols-1 overflow-hidden md:grid-cols-12 ">
 
                             <!-- Image -->
                             <f:if condition="{imageFile}">
-                                <div class="order-1 md:col-span-6 lg:col-span-6">
+                                <div class="order-1 md:col-span-6 lg:col-span-6 {f:if(condition: '{data.tx_mask_hide_firmst_column_on_mobile}', then: 'hidden md:block')}">
                                     <div class="{heightClass} relative h-full">
                                         <f:image
                                                 image="{imageFile}"
@@ -291,7 +291,7 @@
                     </div>
                     <div class="{f:if(condition: '{data.tx_mask_image_on_the_right_side}',then:'order-2 md:order-1',else:'order-1 md:order-2')} md:col-span-6 lg:col-span-6 {heightClass} flex">
                         <div class="flex w-full flex-col justify-between p-4 md:p-10 lg:p-12 relative">
-                            <div class="grid grid-cols-1 gap-2 lg:grid-cols-12 lg:gap-4">
+                            <div class="grid grid-cols-12 gap-2 lg:grid-cols-12 lg:gap-4">
                                 <f:if condition="{data.header}">
                                     <div class="col-span-12 lg:col-span-5">
                                         <h2 class="text-[27px] uppercase md:text-[27px] {headlineClass}">
@@ -299,13 +299,12 @@
                                         </h2>
                                     </div>
                                 </f:if>
-                                <div class="{f:if(condition: hasRightColumn, then: 'lg:col-span-12', else: 'lg:col-span-12')}">
+                                <div class="{f:if(condition: hasRightColumn, then: 'col-span-12 lg:col-span-12', else: 'col-span-12 lg:col-span-12')}">
                                     <f:if condition="{data.tx_mask_copy_textus}">
                                         <div class="mt-8 {bodyClass} [&_p]:m-0 [&_p+p]:mt-4">
                                             {data.tx_mask_copy_textus -> f:transform.html()}
                                         </div>
                                     </f:if>
-
                                 </div>
 
                                 <div class="col-span-12 md:col-span-6 md:col-start-6 flex flex-col justify-between group gap-2">

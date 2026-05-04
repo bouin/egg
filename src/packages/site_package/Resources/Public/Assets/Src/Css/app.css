@@ -438,12 +438,12 @@
 }
 
 .akkordeon summary {
-  text-align: left !important;
+  /*text-align: left !important;*/
   cursor: pointer;
 }
 
 .akkordeon summary > span:first-child {
-  text-align: left !important;
+  /*text-align: left !important;*/
   margin-left: 0 !important;
   justify-content: flex-start !important;
 }
@@ -566,4 +566,47 @@ p {
 }
 tr, td, th {
   line-height: 1 !important;
+}
+#mobile-menu {
+  background-color: var(--color-beige);
+}
+@media (max-width: 768px) {
+  footer {
+    padding-bottom: calc(80px + env(safe-area-inset-bottom));
+  }
+}
+
+.tx-powermail .row {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.tx-powermail .container-fluid {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+@media (max-width: 480px) {
+  summary {
+    align-content: center;
+    align-items: center;
+  }
+  summary span {
+    font-size: 25px !important;
+    line-height: 1 !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1100px) {
+  summary * {
+    font-size: 23px !important;
+    line-height: 1 !important;
+  }
+  summary {
+    padding-right: 4.5rem !important;
+  }
+}
+@media (min-width: 1024px) and (max-width: 1100px) {
+  summary {
+    padding-right: 5.5rem !important;
+  }
 }

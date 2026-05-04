@@ -4,17 +4,18 @@
     <div class="w-full border-[#5a554f] akkordeon">
         <f:for each="{data.tx_mask_accordion_with_data}" as="data_item" iteration="iterator">
             <details class="group {f:if(condition: '{iterator.isFirst}==1', then: '', else: 'border-t border-[#5a554f]')} {f:if(condition: '{iterator.isLast}', then: 'border-b border-[#5a554f]')}">
-                <summary class="relative cursor-pointer list-none py-10 px-8 md:px-12 md:py-8 uppercase text-[#46433f] marker:hidden flex items-center justify-end text-right">
-
-                    <span class="pr-12 tracking-wide">
+                <summary class="cursor-pointer list-none py-10 px-4 md:px-12 md:pl-4 md:pr-14 md:py-8 uppercase text-[#46433f] marker:hidden grid grid-cols-[1fr_auto] items-center gap-2 lg:gap-6 text-right">
+                    <span class="tracking-wid text-right">
                         <f:if condition="{data_item.tx_mask_title_of_the_immo}">
                             {data_item.tx_mask_title_of_the_immo}
                         </f:if>
                     </span>
-                    <span class="absolute right-12 plus -translate-y-1/2 text-2xl group-open:hidden">
+
+                    <span class="text-2xl leading-none group-open:hidden pb-2">
                         +
                     </span>
-                    <span class="absolute right-12 plus -translate-y-1/2 text-2xl hidden group-open:block">
+
+                    <span class="text-2xl leading-none hidden group-open:block pb-2">
                         −
                     </span>
                 </summary>

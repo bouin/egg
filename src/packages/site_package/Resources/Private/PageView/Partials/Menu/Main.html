@@ -1,35 +1,48 @@
-<div class="{f:if(condition: '{media}',then:'min-h-screen mainus')} ">
+<div class="{f:if(condition: '{media}',then:'min-h-screesn mainus')} ">
     <f:if condition="{media}">
-        <f:then>
+        <section class="relative h-[80svh] max-h-[80vh] md:h-[100svh] md:max-h-[100vh] min-h-[64vh] overflow-hidden bg-black">
+
             <f:for each="{media}" as="image" iteration="iterator">
-                <f:if condition="{iterator.isFirst}">
-                    <section class="relative h-[80svh] max-h-[80vh] md:h-[100svh] md:max-h-[100vh] min-h-[64vh] overflow-hidden bg-black">
 
-                        <f:image
-                                image="{image}"
-                                alt="{image.alternative -> f:if(then: image.alternative, else: 'Grünegg')}"
-                                class="absolute inset-0 h-full w-full object-cover object-right md:object-center"
-                                loading="eager"
-                                width="2000c"
-                                height="1200c"
-                        />
-
-                        <div class="absolute inset-0 bg-black/15"></div>
-
-                        <div class="relative z-10 flex h-full items-center justify-center px-6">
-                            <f:link.page pageUid="2" class="w-[75svw]">
-                                <img
-                                        src="{f:uri.resource(path: 'Images/logo1.svg', extensionName: 'SitePackage')}"
-                                        alt="Grünegg"
-                                        class="w-full max-w-[1150px]"
-                                />
-                            </f:link.page>
-                        </div>
-
-                    </section>
+                <!-- DESKTOP -->
+                <f:if condition="{iterator.index} == 0">
+                    <f:image
+                            image="{image}"
+                            alt="{image.alternative -> f:if(then: image.alternative, else: 'Grünegg')}"
+                            class="hidden md:block absolute inset-0 h-full w-full object-cover object-center"
+                            loading="eager"
+                            width="2000c"
+                            height="1200c"
+                    />
                 </f:if>
+
+                <!-- MOBILE -->
+                <f:if condition="{iterator.index} == 1">
+                    <f:image
+                            image="{image}"
+                            alt="{image.alternative -> f:if(then: image.alternative, else: 'Grünegg')}"
+                            class="block md:hidden absolute inset-0 h-full w-full object-cover object-center"
+                            loading="eager"
+                            width="1000c"
+                            height="1600c"
+                    />
+                </f:if>
+
             </f:for>
-        </f:then>
+
+            <div class="absolute inset-0 bg-black/15"></div>
+
+            <div class="relative z-10 flex h-full items-center justify-center px-6">
+                <f:link.page pageUid="2" class="w-[75svw]">
+                    <img
+                            src="{f:uri.resource(path: 'Images/logo1.svg', extensionName: 'SitePackage')}"
+                            alt="Grünegg"
+                            class="w-full max-w-[1150px]"
+                    />
+                </f:link.page>
+            </div>
+
+        </section>
     </f:if>
     <header class="{f:if(condition: '{page.id}==2',then:'border-b border-[var(--font-dark)]')} bg-[#F6F2EC]">
         <div class="mx-auto flex items-center justify-between p-4 md:p-10 md:py-6 lg:p-12 lg:py-6">
@@ -40,9 +53,18 @@
                         class="h-auto w-[220px] md:w-[280px]"
                 />
             </a>
-
+            <button
+                    type="button"
+                    class="md:hidden flex flex-col gap-1.5"
+                    aria-label="Menu öffnen"
+                    onclick="openMobileMenu()"
+            >
+                <span class="block h-px w-7 bg-[var(--font-dark)]"></span>
+                <span class="block h-px w-7 bg-[var(--font-dark)]"></span>
+                <span class="block h-px w-7 bg-[var(--font-dark)]"></span>
+            </button>
             <nav class="hidden md:block">
-                <ul class="flex items-center gap-16 lg:gap-20">
+                <ul class="flex items-center gap-12 md:gap-13 lg:gap-20">
                     <f:for each="{mainnavigation}" as="item">
                         <li>
 
@@ -68,6 +90,16 @@
                         class="h-auto w-[120px] md:w-[180px]"
                 />
             </a>
+            <button
+                    type="button"
+                    class="md:hidden flex flex-col gap-1.5"
+                    aria-label="Menu öffnen"
+                    onclick="openMobileMenu()"
+            >
+                <span class="block h-px w-7 bg-[var(--font-dark)]"></span>
+                <span class="block h-px w-7 bg-[var(--font-dark)]"></span>
+                <span class="block h-px w-7 bg-[var(--font-dark)]"></span>
+            </button>
 
             <nav class="hidden md:block">
                 <ul class="flex items-center gap-16 lg:gap-20">
@@ -87,6 +119,41 @@
             </nav>
         </div>
     </header>
+    <div
+            id="mobile-menu"
+            class="fixed inset-0 z-50 bg-[#F6F2EC] translate-x-full transition-transform duration-300 md:hidden"
+    >
+        <div class="flex items-center justify-between p-4">
+            <img
+                    src="{f:uri.resource(path: 'Images/logo2.svg', extensionName: 'SitePackage')}"
+                    alt="Grünegg"
+                    class="h-auto w-[180px]"
+            />
+
+            <button type="button" onclick="closeMobileMenu()" aria-label="Menu schliessen">
+                <span class="block h-px w-7 rotate-45 bg-[var(--font-dark)]"></span>
+                <span class="block h-px w-7 -rotate-45 bg-[var(--font-dark)]"></span>
+            </button>
+        </div>
+
+        <nav class="px-4 pt-16">
+            <ul class="space-y-8">
+                <f:for each="{mainnavigation}" as="item">
+                    <li>
+                        <a
+                                href="{item.link}"
+                                target="{item.target}"
+                                onclick="closeMobileMenu()"
+                                class="block text-[34px] leading-none tracking-tight text-[var(--font-dark)] relative inline-block pb-1 group text-[20px]"
+                        >
+                            {item.title}
+                            <span class="absolute bottom-0 left-0 h-px w-1/2 bg-[var(--font-dark)] transition-all duration-300 group-hover:w-full"></span>
+                        </a>
+                    </li>
+                </f:for>
+            </ul>
+        </nav>
+    </div>
 </div>
 
 
@@ -98,12 +165,11 @@
                items-center justify-center"
         style="padding: 1.5rem 0.75rem; transition: opacity 0.3s ease;"
         aria-label="Dokumentation anfordern"
->
-    <span style="writing-mode: vertical-rl; transform: rotate(180deg); white-space: nowrap; font-size: 18px; line-height: 1; color: var(--font-dark);">
+        >
+    <span style="writing-mode: vertical-rl; transform: rotate(180deg); white-space: nowrap; font-size: 18px; line-height: 1; color: var(--font-dark);text-align: left">
         Dokumentation <br>anfordern
     </span>
 </button>
-
 
 <div
         id="dok-panel-outer"
@@ -154,7 +220,81 @@
     </div>
 </div>
 
+<!-- Mobile Dok Bottom Bar -->
+<div class="md:hidden fixed left-0 right-0 bottom-0 z-50 bg-[var(--color-platin)] pb-[env(safe-area-inset-bottom)]">
+    <button
+            type="button"
+            onclick="openMobileDokPanel()"
+            class="flex w-full items-center justify-center px-5 py-4 text-[18px] leading-none text-[var(--font-dark)]"
+            aria-label="Dokumentation anfordern"
+    >
+        Dokumentation anfordern
+    </button>
+</div>
+
+<!-- Mobile Dok Panel -->
+<div
+        id="mobile-dok-panel"
+        class="md:hidden fixed left-0 right-0 bottom-0 z-[60] translate-y-full bg-[var(--color-platin)] rounded-t-2xl shadow-xl transition-transform duration-300 pb-[env(safe-area-inset-bottom)]"
+>
+    <div class="relative px-6 pt-8 pb-10 text-[var(--font-dark)]">
+        <button
+                type="button"
+                onclick="closeMobileDokPanel()"
+                class="absolute right-6 top-5"
+                aria-label="Schliessen"
+        >
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line x1="1" y1="1" x2="21" y2="21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <line x1="21" y1="1" x2="1" y2="21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+        </button>
+
+        <div class="space-y-7 pt-6">
+            <p class="text-[18px] leading-snug">
+                Dominique Andreas Waser
+            </p>
+
+            <div class="space-y-4 text-[17px]">
+                <a href="tel:+41797737519" class="relative inline-block pb-1 group">
+                    <span>+41 79 773 75 19</span>
+                    <span class="absolute bottom-0 left-0 h-px w-1/2 bg-[var(--font-dark)] transition-all duration-300 group-hover:w-full"></span>
+                </a>
+
+                <br>
+
+                <a href="mailto:info@adowia.ch" class="relative inline-block pb-1 group">
+                    <span>E-Mail</span>
+                    <span class="absolute bottom-0 left-0 h-px w-1/2 bg-[var(--font-dark)] transition-all duration-300 group-hover:w-full"></span>
+                </a>
+
+                <br>
+
+                <a href="/kontakt#here-16" class="relative inline-block pb-1 group">
+                    <span>Kontaktformular</span>
+                    <span class="absolute bottom-0 left-0 h-px w-1/2 bg-[var(--font-dark)] transition-all duration-300 group-hover:w-full"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
+    function openMobileDokPanel() {
+        const panel = document.getElementById('mobile-dok-panel');
+        if (!panel) return;
+
+        panel.classList.remove('translate-y-full');
+        panel.classList.add('translate-y-0');
+    }
+
+    function closeMobileDokPanel() {
+        const panel = document.getElementById('mobile-dok-panel');
+        if (!panel) return;
+
+        panel.classList.remove('translate-y-0');
+        panel.classList.add('translate-y-full');
+    }
     function openDokPanel() {
         var panel = document.getElementById('dok-panel');
         var trigger = document.getElementById('dok-trigger');
@@ -195,4 +335,49 @@
         toggleStickyHeader();
         window.addEventListener('scroll', toggleStickyHeader, { passive: true });
     });
+    document.addEventListener('DOMContentLoaded', () => {
+        const body = document.body;
+
+        if (!body.classList.contains('page-2')) return;
+
+        const trigger = document.querySelector('.mainus');
+        const header = document.querySelector('header');
+
+        if (!trigger || !header) return;
+
+        trigger.addEventListener('click', (e) => {
+            if (
+                e.target.closest('#mobile-menu') ||
+                e.target.closest('button') ||
+                e.target.closest('nav') ||
+                e.target.closest('a')
+            ) {
+                return;
+            }
+
+            header.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        });
+    });
+
+    /*MENU*/
+    function openMobileMenu() {
+        const menu = document.getElementById('mobile-menu');
+        if (!menu) return;
+
+        menu.classList.remove('translate-x-full');
+        menu.classList.add('translate-x-0');
+        document.body.classList.add('overflow-hidden');
+    }
+
+    function closeMobileMenu() {
+        const menu = document.getElementById('mobile-menu');
+        if (!menu) return;
+
+        menu.classList.remove('translate-x-0');
+        menu.classList.add('translate-x-full');
+        document.body.classList.remove('overflow-hidden');
+    }
 </script>
