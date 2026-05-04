@@ -1,0 +1,32 @@
+base: 'https://egg.ddev.site/'
+dependencies:
+  - typo3/fluid-styled-content
+  - typo3/fluid-styled-content-css
+  - mask/mask
+  - typo3/seo-sitemap
+  - typo3/redirects
+  - in2code/powermail-main
+  - studio/site-package
+errorHandling:
+  -
+    errorCode: 404
+    errorHandler: Page
+    errorContentSource: 't3://page?uid=6'
+languages:
+  -
+    title: Deutsch
+    enabled: true
+    languageId: 0
+    base: /
+    locale: de_CH.utf8
+    navigationTitle: German
+    flag: ch
+    hreflang: de-CH
+    websiteTitle: ''
+rootPageId: 2
+routes:
+  -
+    route: robots.txt
+    type: staticText
+    content: "User-agent: *\r\nDisallow: /typo3/\r\nDisallow: /typo3_src/\r\nDisallow: /fileadmin/user_upload/_temp_/importexport\r\n# Uncomment the following line if you have a sitemap enabled. Replace the domain with your own.\r\n# Sitemap: https://www.example.org/sitemap.xml\r\n"
+websiteTitle: ''

@@ -57,7 +57,7 @@ yarn-error.log*
 # Cache / Assets
 # -----------------------------------------
 /.ddev/*
-/config/*
+!/config/*
 /public/*
 /public/typo3temp/*
 /public/_processed_/*
